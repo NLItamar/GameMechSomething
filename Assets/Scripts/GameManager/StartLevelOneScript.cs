@@ -11,9 +11,18 @@ public class StartLevelOneScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //setting the roof active
+        StartText.GetComponent<TextFadeOut>().FadeOut();
+
+        //set active method
+        SetObjectsActive();
+    }
+
+    void SetObjectsActive()
+    {
+        //set the roof active
         RoofObject.SetActive(true);
 
-        StartText.GetComponent<TextFadeOut>().FadeOut();
+        //set the start text active
+        StartText.gameObject.SetActive(true);
     }
 }
