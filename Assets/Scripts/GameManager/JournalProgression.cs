@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class JournalProgression : MonoBehaviour
 {
     public Text journalText;
+    public Text endText;
 
     int caseSwitch;
 
@@ -31,10 +32,17 @@ public class JournalProgression : MonoBehaviour
                 break;
             case 4:
                 journalText.text = journalText.text + System.Environment.NewLine + "Fourth entry added, now I can escape!";
+                EndingLevel();
                 break;
             default:
                 journalText.text = "Nothing in here now";
                 break;
         }
+    }
+
+    public void EndingLevel()
+    {
+        //ends the game in a sense
+        endText.gameObject.SetActive(true);        
     }
 }
