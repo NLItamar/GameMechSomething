@@ -19,6 +19,7 @@ public class JournalProgression : MonoBehaviour
     {
         caseSwitch++;
 
+        //for later: change to string switch so every journal entry adds by a keyword
         switch (caseSwitch)
         {
             case 1:
