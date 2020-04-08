@@ -8,35 +8,41 @@ public class JournalProgression : MonoBehaviour
     public Text journalText;
     public Text endText;
 
-    int caseSwitch;
+    private string caseSwitchString;
+
+    public string spawnText, messText, sleepQuarterText, officerQuarterText;
+
+    //int caseSwitch;
 
     private void Start()
     {
-        caseSwitch = 0;
+        //caseSwitch = 0;
     }
 
-    public void JournalAddText()
+    public void JournalAddText(string objectName)
     {
-        caseSwitch++;
+        //caseSwitch++;
+        caseSwitchString = objectName;
+        Debug.Log(caseSwitchString);
 
         //for later: change to string switch so every journal entry adds by a keyword
-        switch (caseSwitch)
+        switch (caseSwitchString)
         {
-            case 1:
-                journalText.text = "First entry added, three more to go";
+            case "SpawnObject":
+                journalText.text = journalText.text + System.Environment.NewLine + spawnText;
                 break;
-            case 2:
-                journalText.text = journalText.text + System.Environment.NewLine + "Second entry added, two more to go";
+            case "MessObject":
+                journalText.text = journalText.text + System.Environment.NewLine + messText;
                 break;
-            case 3:
-                journalText.text = journalText.text + System.Environment.NewLine + "Third entry added, one more to go";
+            case "SleepingQuarterObject":
+                journalText.text = journalText.text + System.Environment.NewLine + sleepQuarterText;
                 break;
-            case 4:
-                journalText.text = journalText.text + System.Environment.NewLine + "Fourth entry added, now I can escape!";
+            case "OfficerQuarterObject":
+                journalText.text = journalText.text + System.Environment.NewLine + officerQuarterText;
                 EndingLevel();
                 break;
             default:
-                journalText.text = "Nothing in here now";
+                journalText.text = "Something went wrong";
                 break;
         }
     }

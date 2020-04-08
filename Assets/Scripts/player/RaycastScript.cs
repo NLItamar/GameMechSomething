@@ -49,7 +49,7 @@ public class RaycastScript : MonoBehaviour
                 {
                     Debug.Log("I have interacted");
                     raycastedObject.SetActive(false);
-                    gameManager.GetComponent<JournalProgression>().JournalAddText();
+                    gameManager.GetComponent<JournalProgression>().JournalAddText(raycastedObject.name);
                 }
             }
         }
