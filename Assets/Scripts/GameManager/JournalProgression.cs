@@ -23,7 +23,7 @@ public class JournalProgression : MonoBehaviour
     {
         //caseSwitch++;
         caseSwitchString = objectName;
-        Debug.Log(caseSwitchString);
+        Debug.Log(caseSwitchString + "interacted with this object");
 
         //for later: change to string switch so every journal entry adds by a keyword
         switch (caseSwitchString)
@@ -39,7 +39,7 @@ public class JournalProgression : MonoBehaviour
                 break;
             case "OfficerQuarterObject":
                 journalText.text = journalText.text + System.Environment.NewLine + officerQuarterText;
-                EndingLevel();
+                EndLevel();
                 break;
             default:
                 journalText.text = "Something went wrong";
@@ -47,9 +47,10 @@ public class JournalProgression : MonoBehaviour
         }
     }
 
-    public void EndingLevel()
+    public void EndLevel()
     {
         //ends the game in a sense
-        endText.gameObject.SetActive(true);        
+        //endText.gameObject.SetActive(true);
+        GetComponent<EndLevelScript>().EndLevel();
     }
 }

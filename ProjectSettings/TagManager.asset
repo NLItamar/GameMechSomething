@@ -7,6 +7,7 @@ TagManager:
   - SimpleWall
   - InteractableObject
   - HighlightObject
+  - EndLevelCollider
   layers:
   - Default
   - TransparentFX

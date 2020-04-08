@@ -1,18 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndLevelScript : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+{ 
+    public GameObject escapeThing;
+    public GameObject endCollider;
 
-    // Update is called once per frame
-    void Update()
+    public bool endGame = false;
+
+    public void EndLevel()
     {
-        
+        endGame = true;
+
+        //opens the door
+        escapeThing.SetActive(false);
+
+        //enables the collider
+        endCollider.SetActive(true);
     }
 }
