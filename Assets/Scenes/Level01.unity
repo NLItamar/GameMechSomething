@@ -169,7 +169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4029883
 Transform:
   m_ObjectHideFlags: 0
@@ -6164,6 +6164,7 @@ RectTransform:
   - {fileID: 1097905961}
   - {fileID: 2093982676}
   - {fileID: 1410305663}
+  - {fileID: 1489105894}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6458,71 +6459,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 416191120}
     m_Modifications:
-    - target: {fileID: 5828468180476139656, guid: 8858324862382ae4ab2965044affbd89,
+    - target: {fileID: -772611971749566721, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
-      propertyPath: MaxDistance
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828468180476139656, guid: 8858324862382ae4ab2965044affbd89,
+      propertyPath: CreepMeter
+      value: 
+      objectReference: {fileID: 1489105895}
+    - target: {fileID: 5828468180476139654, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
-      propertyPath: reverbZoneMixCustomCurve.m_Curve.Array.data[0].value
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828468180476139656, guid: 8858324862382ae4ab2965044affbd89,
-        type: 3}
-      propertyPath: rolloffMode
+      propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5828468180476139656, guid: 8858324862382ae4ab2965044affbd89,
+    - target: {fileID: 5828468180476139654, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].inWeight
-      value: 0
+      propertyPath: m_CollisionDetection
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 5828468180476139656, guid: 8858324862382ae4ab2965044affbd89,
-        type: 3}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].outWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828468180476139656, guid: 8858324862382ae4ab2965044affbd89,
-        type: 3}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].time
-      value: 0.8849945
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828468180476139656, guid: 8858324862382ae4ab2965044affbd89,
-        type: 3}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].value
-      value: 0.6791992
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828468180476139656, guid: 8858324862382ae4ab2965044affbd89,
-        type: 3}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].inSlope
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828468180476139656, guid: 8858324862382ae4ab2965044affbd89,
-        type: 3}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outSlope
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828468180476139656, guid: 8858324862382ae4ab2965044affbd89,
-        type: 3}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].inWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828468180476139656, guid: 8858324862382ae4ab2965044affbd89,
-        type: 3}
-      propertyPath: rolloffCustomCurve.m_Curve.Array.data[1].outWeight
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828468180476139657, guid: 8858324862382ae4ab2965044affbd89,
-        type: 3}
-      propertyPath: points.Array.size
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5828468180476139657, guid: 8858324862382ae4ab2965044affbd89,
-        type: 3}
-      propertyPath: points.Array.data[11]
-      value: 
-      objectReference: {fileID: 1717387}
     - target: {fileID: 5828468180476139657, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
       propertyPath: points.Array.data[0]
@@ -6580,6 +6531,11 @@ PrefabInstance:
       objectReference: {fileID: 789952325}
     - target: {fileID: 5828468180476139657, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
+      propertyPath: points.Array.data[11]
+      value: 
+      objectReference: {fileID: 1717387}
+    - target: {fileID: 5828468180476139657, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
       propertyPath: points.Array.data[12]
       value: 
       objectReference: {fileID: 1174694109}
@@ -6618,16 +6574,6 @@ PrefabInstance:
       propertyPath: points.Array.data[19]
       value: 
       objectReference: {fileID: 1876644197}
-    - target: {fileID: 5828468180476139657, guid: 8858324862382ae4ab2965044affbd89,
-        type: 3}
-      propertyPath: points.Array.data[20]
-      value: 
-      objectReference: {fileID: 1717387}
-    - target: {fileID: 5828468180476139657, guid: 8858324862382ae4ab2965044affbd89,
-        type: 3}
-      propertyPath: points.Array.data[21]
-      value: 
-      objectReference: {fileID: 1717387}
     - target: {fileID: 5828468180476139662, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6687,6 +6633,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SimpleEnemyFirstQuarters
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828468180476139663, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8858324862382ae4ab2965044affbd89, type: 3}
@@ -9096,6 +9047,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 416191120}
     m_Modifications:
+    - target: {fileID: -772611971749566721, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: CreepMeter
+      value: 
+      objectReference: {fileID: 1489105895}
+    - target: {fileID: 5828468180476139654, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828468180476139654, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5828468180476139657, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
       propertyPath: points.Array.size
@@ -9200,6 +9166,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SimpleEnemyMess1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828468180476139663, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8858324862382ae4ab2965044affbd89, type: 3}
@@ -10113,6 +10084,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 416191120}
     m_Modifications:
+    - target: {fileID: -772611971749566721, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: CreepMeter
+      value: 
+      objectReference: {fileID: 1489105895}
+    - target: {fileID: 5828468180476139654, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828468180476139654, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5828468180476139657, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
       propertyPath: points.Array.size
@@ -10212,6 +10198,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SimpleEnemyMess2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828468180476139663, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8858324862382ae4ab2965044affbd89, type: 3}
@@ -17321,6 +17312,79 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483993234}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1489105893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1489105894}
+  - component: {fileID: 1489105896}
+  - component: {fileID: 1489105895}
+  m_Layer: 5
+  m_Name: CreepMeter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1489105894
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489105893}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 20, y: 12, z: 1}
+  m_Children: []
+  m_Father: {fileID: 666983003}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1489105895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489105893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1489105896
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489105893}
+  m_CullTransparentMesh: 0
 --- !u!1 &1494686392
 GameObject:
   m_ObjectHideFlags: 0
@@ -23788,6 +23852,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 416191120}
     m_Modifications:
+    - target: {fileID: -772611971749566721, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: CreepMeter
+      value: 
+      objectReference: {fileID: 1489105895}
+    - target: {fileID: 5828468180476139654, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828468180476139654, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5828468180476139657, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
       propertyPath: points.Array.size
@@ -23912,6 +23991,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SimpleEnemyMidAndStart
+      objectReference: {fileID: 0}
+    - target: {fileID: 5828468180476139663, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8858324862382ae4ab2965044affbd89, type: 3}
