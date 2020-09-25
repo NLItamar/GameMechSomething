@@ -8,12 +8,15 @@ public class LightBehaviourStaticScript : MonoBehaviour
 
     Material m_Material;
 
-    public float minIntensity = 0.3f;
-    public float maxIntensity = 2f;
+    public float minIntensity;
+    public float maxIntensity;
+    private float setIntensity;
 
     public float maxCheck;
     private float randomTime;
     private float randomTimeChecker;
+
+    private bool isOn;
 
     void Start()
     {
@@ -23,34 +26,45 @@ public class LightBehaviourStaticScript : MonoBehaviour
         Debug.Log(randomTime);
         Debug.Log(randomTimeChecker);
 
-        //InvokeRepeating("FlickerLight", 0f, 0.1f);
+        isOn = true;
+
+        setIntensity = maxIntensity;
 
         m_Material = GetComponent<Renderer>().material;
-
     }
 
     void Update()
     {
-        //turns the light off
+        if(isOn)
+        {
+
+        }
+        FlickerLight();
+    }
+
+    public void FlickerLight()
+    {
+        //turns the light 'off'
         if (randomTime >= randomTimeChecker)
         {
             myLight.intensity = minIntensity;
             m_Material.DisableKeyword("_EMISSION");
         }
 
-        //turns the light on
-        if (randomTime <= randomTimeChecker)
+        //turns the light 'on'
+        else if (randomTime <= randomTimeChecker)
         {
-            myLight.intensity = maxIntensity;
-            m_Material.EnableKeyword("_EMISSION");
+            setIntensity = Random.Range(minIntensity, maxIntensity);
+            Invoke("LightOn", 0.5f);
         }
-
-        randomTime = Random.Range(1f, maxCheck);
     }
 
-    private void FlickerLight()
+    private void LightOn()
     {
+        myLight.intensity = maxIntensity;
+        m_Material.EnableKeyword("_EMISSION");
 
+        randomTime = Random.Range(1f, maxCheck);
     }
 
 }
