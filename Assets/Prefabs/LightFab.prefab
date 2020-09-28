@@ -236,7 +236,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.6
   m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -299,7 +299,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minIntensity: 0.1
   maxIntensity: 0.9
-  maxCheck: 30
+  normalIntensity: 0.6
+  maxCheck: 50
 --- !u!1 &730229411392753729
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +503,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 0.6
   m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -565,4 +566,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minIntensity: 0.1
   maxIntensity: 0.9
-  maxCheck: 30
+  normalIntensity: 0.6
+  maxCheck: 50

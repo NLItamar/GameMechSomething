@@ -11,6 +11,7 @@ public class LightBehaviourStaticScript : MonoBehaviour
     public float minIntensity;
     public float maxIntensity;
     private float setIntensity;
+    public float normalIntensity;
 
     public float maxCheck;
     private float randomTime;
@@ -31,17 +32,55 @@ public class LightBehaviourStaticScript : MonoBehaviour
         setIntensity = maxIntensity;
 
         m_Material = GetComponent<Renderer>().material;
+
+        isOn = true;
     }
 
     void Update()
     {
-        if(isOn)
-        {
+        //gets a new random for the next 'loop'
+        randomTime = Random.Range(1f, maxCheck);
 
+        if(isOn && randomTime >= randomTimeChecker)
+        {
+            FlickerTheLight();
         }
-        FlickerLight();
+        //FlickerLight();
     }
 
+    public void FlickerTheLight()
+    {
+        myLight.intensity = minIntensity;
+        m_Material.DisableKeyword("_EMISSION");
+        isOn = false;
+
+        //turns the light back on after x amount of time
+        Invoke("FlickerBackOn", 0.2f);
+    }
+
+    public void FlickerBackOn()
+    {
+        //gets a new random intensity to shine bright for a bit
+        setIntensity = Random.Range(normalIntensity, maxIntensity);
+        myLight.intensity = setIntensity;
+
+        //turns the emission on the material BACK ON
+        m_Material.EnableKeyword("_EMISSION");
+        m_Material.SetColor("_EmmisionColor", Color.white * 1f);
+
+        //puts the light back to normal
+        Invoke("LightNormal", 0.2f);
+    }
+
+    public void LightNormal()
+    {
+        myLight.intensity = normalIntensity;
+        m_Material.SetColor("_EmmisionColor", Color.white * 0.5f);
+
+        isOn = true;
+    }
+
+    /*
     public void FlickerLight()
     {
         //turns the light 'off'
@@ -66,5 +105,5 @@ public class LightBehaviourStaticScript : MonoBehaviour
 
         randomTime = Random.Range(1f, maxCheck);
     }
-
+    */
 }
