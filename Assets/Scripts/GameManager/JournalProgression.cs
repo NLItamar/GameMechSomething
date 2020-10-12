@@ -23,7 +23,7 @@ public class JournalProgression : MonoBehaviour
     {
         //caseSwitch++;
         caseSwitchString = objectName;
-        Debug.Log(caseSwitchString + "interacted with this object");
+        Debug.Log(caseSwitchString + " interacted with this object");
 
         //for later: change to string switch so every journal entry adds by a keyword
         switch (caseSwitchString)

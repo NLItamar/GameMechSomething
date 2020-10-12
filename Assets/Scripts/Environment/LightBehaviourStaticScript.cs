@@ -24,8 +24,6 @@ public class LightBehaviourStaticScript : MonoBehaviour
         myLight = GetComponent<Light>();
         randomTime = Random.Range(1f, maxCheck);
         randomTimeChecker = maxCheck - 1f;
-        Debug.Log(randomTime);
-        Debug.Log(randomTimeChecker);
 
         isOn = true;
 
