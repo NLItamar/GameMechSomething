@@ -14,6 +14,7 @@ public class RaycastScript : MonoBehaviour
 
     [SerializeField] private LayerMask layerMaskInteract;
     [SerializeField] private Image UICrosshair;
+    public Image journalImage;
 
     private Text tooltipText;
     private bool tooltipTextActive;
@@ -27,10 +28,9 @@ public class RaycastScript : MonoBehaviour
 
     void Update()
     {
-        RaycastHit hit;
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
 
-        if(Physics.Raycast(transform.position, fwd, out hit, rayLength, layerMaskInteract.value))
+        if (Physics.Raycast(transform.position, fwd, out RaycastHit hit, rayLength, layerMaskInteract.value))
         {
             if(hit.collider.CompareTag("InteractableObject"))
             {
@@ -50,6 +50,8 @@ public class RaycastScript : MonoBehaviour
                     Debug.Log("I have interacted");
                     raycastedObject.SetActive(false);
                     gameManager.GetComponent<JournalProgression>().JournalAddText(raycastedObject.name);
+                    //gonna make this flash green
+                    journalImage.color = Color.green;
                 }
             }
         }

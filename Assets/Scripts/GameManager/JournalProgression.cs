@@ -12,6 +12,14 @@ public class JournalProgression : MonoBehaviour
 
     public string spawnText, messText, sleepQuarterText, officerQuarterText;
 
+    public GameObject spawnObject;
+
+    //change this to a list later on
+    public GameObject SpawnInteractable;
+    public GameObject MessObject;
+    public GameObject SQObject;
+    public GameObject OfficerQObject;
+
     //int caseSwitch;
 
     private void Start()
@@ -30,12 +38,17 @@ public class JournalProgression : MonoBehaviour
         {
             case "SpawnObject":
                 journalText.text = journalText.text + System.Environment.NewLine + spawnText;
+                spawnObject.SetActive(false);
+                //sets the next object active
+                MessObject.SetActive(true);
                 break;
             case "MessObject":
                 journalText.text = journalText.text + System.Environment.NewLine + messText;
+                SQObject.SetActive(true);
                 break;
             case "SleepingQuarterObject":
                 journalText.text = journalText.text + System.Environment.NewLine + sleepQuarterText;
+                OfficerQObject.SetActive(true);
                 break;
             case "OfficerQuarterObject":
                 journalText.text = journalText.text + System.Environment.NewLine + officerQuarterText;

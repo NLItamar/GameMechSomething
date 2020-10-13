@@ -8,6 +8,16 @@ public class JournalScript : MonoBehaviour
 {
     private bool journalOpen;
 
+    public GameObject spawnObject;
+    public GameObject journalImage;
+
+    public Image bookImage;
+
+    private void Awake()
+    {
+        journalImage.SetActive(false);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +33,21 @@ public class JournalScript : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.Q) && journalOpen)
         {
-
+            CloseJournal();
         }
     }
 
     void OpenJournal()
     {
+        journalImage.SetActive(true);
+        bookImage.color = Color.yellow;
+        journalOpen = true;
+    }
 
+    void CloseJournal()
+    {
+        journalImage.SetActive(false);
+        bookImage.color = Color.white;
+        journalOpen = false;
     }
 }
