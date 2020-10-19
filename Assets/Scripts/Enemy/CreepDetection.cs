@@ -5,37 +5,31 @@ using UnityEngine.UI;
 
 public class CreepDetection : MonoBehaviour
 {
+    public GameObject Player;
     public Image CreepMeter;
 
-    private GameObject raycastedObject;
-
-    public GameObject Player;
-
-    public GameObject gameManager;
-
-    //distance of interacting
-    [SerializeField] private readonly int rayLength = 10;
-
-    [SerializeField] private LayerMask layerMaskInteract;
-
-    public bool raycastHit;
+    private GameObject gameManager;
 
     private void Start()
     {
-        //CreepMeter = 
+        Player = GameObject.FindGameObjectWithTag("Player");
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
     }
 
     void Update()
     {
-        RaycastHit hit;
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+        float dist = Vector3.Distance(Player.transform.position, this.transform.position);
 
-        if (Physics.Raycast(transform.position, fwd, out hit, rayLength, layerMaskInteract.value))
+        //clusterfuck that is the creeping of the screen with enemies closeby(gonna do this different later on!!! and moving it to CreepManager!!!)
+        if(dist <= 30f && gameManager.GetComponent<CreepManager>().creepOn == false)
         {
-            if (hit.collider.CompareTag("InteractableObject"))
-            {
-                
-            }
+            gameManager.GetComponent<CreepManager>().Creeping();
+        }
+
+        else if(dist > 30f && gameManager.GetComponent<CreepManager>().creepOn)
+        {
+            gameManager.GetComponent<CreepManager>().creepOn = false;
         }
     }
 }

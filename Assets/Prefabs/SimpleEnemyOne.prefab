@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5828468180476139657}
   - component: {fileID: 5828468180476139656}
   - component: {fileID: 5828468180476139654}
-  - component: {fileID: -772611971749566721}
+  - component: {fileID: 3413448896827074595}
   m_Layer: 0
   m_Name: SimpleEnemyOne
   m_TagString: Enemy
@@ -268,7 +268,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &-772611971749566721
+--- !u!114 &3413448896827074595
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -282,8 +282,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CreepMeter: {fileID: 0}
   Player: {fileID: 0}
-  gameManager: {fileID: 0}
-  layerMaskInteract:
-    serializedVersion: 2
-    m_Bits: 0
-  raycastHit: 0

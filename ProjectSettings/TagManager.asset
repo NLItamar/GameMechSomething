@@ -9,6 +9,8 @@ TagManager:
   - HighlightObject
   - EndLevelCollider
   - Enemy
+  - CreepDetection
+  - GameManager
   layers:
   - Default
   - TransparentFX
