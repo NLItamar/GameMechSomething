@@ -280,5 +280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8332cf5294a3594bb2e949c1a50ba9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CreepMeter: {fileID: 0}
   Player: {fileID: 0}
+  CreepMeter: {fileID: 0}
+  distanceMeasure: 15

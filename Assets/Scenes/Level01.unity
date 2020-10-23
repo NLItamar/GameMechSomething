@@ -652,8 +652,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de777480c5e27744abb9bb6d8385151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CreepMeter: {fileID: 1489105895}
   creepOn: 0
+  Player: {fileID: 818222546}
 --- !u!1 &13988354 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 90296162569286649, guid: f6de927572ad23548b44e95b5c29a62e,
