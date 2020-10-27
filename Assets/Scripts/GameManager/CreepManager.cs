@@ -32,6 +32,9 @@ public class CreepManager : MonoBehaviour
 
     private void Update()
     {
-        CreepMeter.color = Color.Lerp(Color.red, Color.clear, Vector3.Distance(Player.transform.position, enemy.position) / distanceMeasure);
+        if(creepOn)
+        {
+            CreepMeter.color = Color.Lerp(Color.red, Color.clear, Vector3.Distance(Player.transform.position, enemy.position) / distanceMeasure);
+        }
     }
 }

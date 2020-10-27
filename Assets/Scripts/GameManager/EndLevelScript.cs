@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EndLevelScript : MonoBehaviour
 { 
@@ -19,5 +20,10 @@ public class EndLevelScript : MonoBehaviour
 
         //enables the collider
         endCollider.SetActive(true);
+    }
+
+    public void GameOver(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

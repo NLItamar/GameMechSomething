@@ -7,22 +7,13 @@ public class HitDetection : MonoBehaviour
 {
     public GameObject gameManager;
 
-    private bool collidingEnemy;
-
-    private void Start()
-    {
-        collidingEnemy = false;
-    }
-
-
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(hit.collider.tag == "Enemy" && collidingEnemy != false)
+        if(hit.collider.tag == "Enemy")
         {
-            collidingEnemy = true;
-
-            gameManager.GetComponent<LivingBehaviour>().currentLives--;
-            Debug.Log(gameManager.GetComponent<LivingBehaviour>().currentLives);
+            Debug.Log("hit enemy");
+            //game over
+            gameManager.GetComponent<EndLevelScript>().GameOver("GameOver");
         }
     }
 }
