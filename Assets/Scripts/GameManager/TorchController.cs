@@ -9,15 +9,18 @@ public class TorchController : MonoBehaviour
     public Light Torch;
     public Image FlashLightImage;
 
+    public bool flashlightPickup;
+
     void Start()
     {
         IsTorchOn = false;
         Torch.gameObject.SetActive(false);
+        flashlightPickup = false;
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T))
+        if(Input.GetKeyDown(KeyCode.T) && flashlightPickup)
         {
             TorchUse();
         }

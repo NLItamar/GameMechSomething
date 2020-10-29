@@ -14,16 +14,20 @@ public class RaycastScript : MonoBehaviour
 
     [SerializeField] private LayerMask layerMaskInteract;
     [SerializeField] private Image UICrosshair;
-    public Image journalImage;
+    [SerializeField] public Image flashLightImage;
+    [SerializeField] public Image journalImage;
 
     private Text tooltipText;
     private bool tooltipTextActive;
 
     public bool raycastHit;
 
+    private ParticleSystem.MainModule settings;
+
     private void Start()
     {
         tooltipTextActive = false;
+        settings = GameObject.FindGameObjectWithTag("MainFlashlight").GetComponentInChildren<ParticleSystem>().main;
     }
 
     void Update()
@@ -52,6 +56,32 @@ public class RaycastScript : MonoBehaviour
                     gameManager.GetComponent<JournalProgression>().JournalAddText(raycastedObject.name);
                     //gonna make this flash green
                     journalImage.color = Color.green;
+                }
+            }
+
+            if(hit.collider.CompareTag("Flashlight"))
+            {
+                raycastedObject = hit.collider.gameObject;
+
+                //text object
+                tooltipText = raycastedObject.gameObject.GetComponentInChildren<Text>(true);
+                SetToolTipOn();
+
+                raycastHit = true;
+
+                //change crosshair
+                CrosshairActive();
+
+                //interacting with the object
+                if (Input.GetKeyDown("e"))
+                {
+                    Debug.Log("I have interacted");
+                    gameManager.GetComponent<JournalProgression>().JournalAddText("MainFlashlight");
+                    //gonna make this flash green
+                    journalImage.color = Color.green;
+                    //enable the flashlight in the canvas and in game
+                    flashLightImage.gameObject.SetActive(true);
+                    this.GetComponentInParent<TorchController>().flashlightPickup = true;
                 }
             }
         }

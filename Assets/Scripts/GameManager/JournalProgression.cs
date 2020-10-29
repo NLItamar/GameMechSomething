@@ -10,7 +10,7 @@ public class JournalProgression : MonoBehaviour
 
     private string caseSwitchString;
 
-    public string spawnText, messText, sleepQuarterText, officerQuarterText;
+    public string spawnText, messText, sleepQuarterText, officerQuarterText, FlashLightText, firstEnemyText;
 
     public GameObject spawnObject;
 
@@ -19,6 +19,7 @@ public class JournalProgression : MonoBehaviour
     public GameObject MessObject;
     public GameObject SQObject;
     public GameObject OfficerQObject;
+    public GameObject MainFlashlight;
 
     //int caseSwitch;
 
@@ -37,22 +38,29 @@ public class JournalProgression : MonoBehaviour
         switch (caseSwitchString)
         {
             case "SpawnObject":
-                journalText.text = journalText.text + System.Environment.NewLine + spawnText;
+                journalText.text = journalText.text + System.Environment.NewLine + spawnText + System.Environment.NewLine;
                 spawnObject.SetActive(false);
                 //sets the next object active
                 MessObject.SetActive(true);
                 break;
             case "MessObject":
-                journalText.text = journalText.text + System.Environment.NewLine + messText;
+                journalText.text = journalText.text + System.Environment.NewLine + messText + System.Environment.NewLine;
                 SQObject.SetActive(true);
                 break;
             case "SleepingQuarterObject":
-                journalText.text = journalText.text + System.Environment.NewLine + sleepQuarterText;
+                journalText.text = journalText.text + System.Environment.NewLine + sleepQuarterText + System.Environment.NewLine;
                 OfficerQObject.SetActive(true);
                 break;
             case "OfficerQuarterObject":
-                journalText.text = journalText.text + System.Environment.NewLine + officerQuarterText;
+                journalText.text = journalText.text + System.Environment.NewLine + officerQuarterText + System.Environment.NewLine;
                 EndLevel();
+                break;
+            case "MainFlashlight":
+                journalText.text = journalText.text + System.Environment.NewLine + FlashLightText + System.Environment.NewLine;
+                MainFlashlight.SetActive(false);
+                break;
+            case "FirstEnemyEncounter":
+                journalText.text = journalText.text + System.Environment.NewLine + firstEnemyText + System.Environment.NewLine;
                 break;
             default:
                 journalText.text = "Something went wrong";

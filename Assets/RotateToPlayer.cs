@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlashLightBehaviour : MonoBehaviour
+public class RotateToPlayer : MonoBehaviour
 {
+    public Transform player;
+
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up * 2f, Space.World);
+        transform.LookAt(2 * transform.position - player.position);
     }
 }

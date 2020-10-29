@@ -14,6 +14,8 @@ public class CreepDetection : MonoBehaviour
 
     private bool shouldICheck;
 
+    private bool firstEncounter;
+
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -21,6 +23,7 @@ public class CreepDetection : MonoBehaviour
         CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
 
         shouldICheck = true;
+        firstEncounter = false;
     }
 
     void Update()
@@ -33,7 +36,11 @@ public class CreepDetection : MonoBehaviour
         {
             //does the colour thingy
             gameManager.GetComponent<CreepManager>().Creeping(this.transform, distanceMeasure);
-
+            if(firstEncounter == false)
+            {
+                gameManager.GetComponent<CreepManager>().FirstEncounter();
+                firstEncounter = true;
+            }
             this.shouldICheck = false;
         }
 

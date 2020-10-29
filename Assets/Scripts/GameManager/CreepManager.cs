@@ -9,10 +9,10 @@ public class CreepManager : MonoBehaviour
 
     public GameObject Player;
     public Image CreepMeter;
+    public Image JournalImage;
 
     private Transform enemy;
     private float distanceMeasure;
-
 
     // Start is called before the first frame update
     void Start()
@@ -36,5 +36,11 @@ public class CreepManager : MonoBehaviour
         {
             CreepMeter.color = Color.Lerp(Color.red, Color.clear, Vector3.Distance(Player.transform.position, enemy.position) / distanceMeasure);
         }
+    }
+
+    public void FirstEncounter()
+    {
+        this.GetComponent<JournalProgression>().JournalAddText("FirstEnemyEncounter");
+        JournalImage.color = Color.green;
     }
 }

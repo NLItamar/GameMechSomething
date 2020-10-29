@@ -11,6 +11,8 @@ TagManager:
   - Enemy
   - CreepDetection
   - GameManager
+  - Flashlight
+  - MainFlashlight
   layers:
   - Default
   - TransparentFX
