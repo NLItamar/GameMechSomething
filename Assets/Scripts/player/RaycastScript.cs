@@ -26,6 +26,7 @@ public class RaycastScript : MonoBehaviour
 
     private void Start()
     {
+        UICrosshair = GameObject.FindGameObjectWithTag("Crosshair").GetComponent<Image>();
         tooltipTextActive = false;
         settings = GameObject.FindGameObjectWithTag("MainFlashlight").GetComponentInChildren<ParticleSystem>().main;
     }

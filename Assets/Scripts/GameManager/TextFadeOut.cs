@@ -9,6 +9,7 @@ class TextFadeOut : MonoBehaviour
 
     public void FadeOut()
     {
+        fadeOutTime = 10f;
         StartCoroutine(FadeOutRoutine());
     }
     private IEnumerator FadeOutRoutine()
