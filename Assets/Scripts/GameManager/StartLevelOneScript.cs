@@ -42,7 +42,7 @@ public class StartLevelOneScript : MonoBehaviour
     //reusable method that moves an interactable object to another location
     //needs a random number as much as the locations there are, which are the transform positions of the empty gameobjects
     //needs the parent of those empty gameobjects and the interactable object itself
-    void SpawnIntelLocationsRandom(int randomSeed, GameObject randomSpawnPoints, GameObject toMoveObject)
+    public void SpawnIntelLocationsRandom(int randomSeed, GameObject randomSpawnPoints, GameObject toMoveObject)
     {
         childrenList = new List<GameObject>();
 

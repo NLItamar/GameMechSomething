@@ -21,6 +21,12 @@ public class JournalProgression : MonoBehaviour
     public GameObject OfficerQObject;
     public GameObject MainFlashlight;
 
+    public GameObject SQSpawnPoints;
+    public GameObject OFSpawnPoints;
+
+    public int numberOfSQPoints;
+    public int numberOfOQPoints;
+
     //int caseSwitch;
 
     private void Start()
@@ -46,6 +52,7 @@ public class JournalProgression : MonoBehaviour
             case "MessObject":
                 journalText.text = journalText.text + System.Environment.NewLine + messText + System.Environment.NewLine;
                 SQObject.SetActive(true);
+                this.gameObject.GetComponent<StartLevelOneScript>().SpawnIntelLocationsRandom(Random.Range(0, numberOfSQPoints + 1), SQSpawnPoints, SQObject);
                 break;
             case "SleepingQuarterObject":
                 journalText.text = journalText.text + System.Environment.NewLine + sleepQuarterText + System.Environment.NewLine;
