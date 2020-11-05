@@ -24,6 +24,7 @@ public class JournalProgression : MonoBehaviour
     public GameObject SQSpawnPoints;
     public GameObject OFSpawnPoints;
 
+    //SQ0 and OF0 doesnt exist so the the max is 'not' exclusive in int random range
     public int numberOfSQPoints;
     public int numberOfOQPoints;
 
@@ -31,7 +32,7 @@ public class JournalProgression : MonoBehaviour
 
     private void Start()
     {
-        //caseSwitch = 0;
+        
     }
 
     public void JournalAddText(string objectName)
@@ -52,7 +53,7 @@ public class JournalProgression : MonoBehaviour
             case "MessObject":
                 journalText.text = journalText.text + System.Environment.NewLine + messText + System.Environment.NewLine;
                 SQObject.SetActive(true);
-                this.gameObject.GetComponent<StartLevelOneScript>().SpawnIntelLocationsRandom(Random.Range(0, numberOfSQPoints + 1), SQSpawnPoints, SQObject);
+                this.gameObject.GetComponent<StartLevelOneScript>().SpawnIntelLocationsRandom(Random.Range(0, numberOfSQPoints), SQSpawnPoints, SQObject);
                 break;
             case "SleepingQuarterObject":
                 journalText.text = journalText.text + System.Environment.NewLine + sleepQuarterText + System.Environment.NewLine;

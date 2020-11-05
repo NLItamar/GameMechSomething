@@ -55,6 +55,13 @@ public class StartLevelOneScript : MonoBehaviour
 
         //moves the interact object
         toMoveObject.transform.position = childrenList[randomSeed].transform.position;
+        //rotates it to the appropriate rotation
+        Vector3 eulerRotation = new Vector3(
+            childrenList[randomSeed].transform.eulerAngles.x, 
+            childrenList[randomSeed].transform.eulerAngles.y, 
+            childrenList[randomSeed].transform.eulerAngles.z);
+
+        toMoveObject.transform.rotation = Quaternion.Euler(eulerRotation);
 
         //clears the list for next object
         childrenList.Clear();
