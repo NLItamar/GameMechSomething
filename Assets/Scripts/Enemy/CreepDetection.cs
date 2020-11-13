@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class CreepDetection : MonoBehaviour
 {
-    public GameObject Player;
-    public Image CreepMeter;
+    [SerializeField] private GameObject Player;
+    [SerializeField] private Image CreepMeter;
 
-    private GameObject gameManager;
+    [SerializeField] private GameObject gameManager;
 
     public float distanceMeasure;
 
