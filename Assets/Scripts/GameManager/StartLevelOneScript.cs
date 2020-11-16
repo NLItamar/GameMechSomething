@@ -16,17 +16,27 @@ public class StartLevelOneScript : MonoBehaviour
 
     private int randomNumber;
 
+    public GameObject SQRightRandomEnemy;
+    public GameObject SQRightSpawnPoints;
+
     // Start is called before the first frame update
     void Start()
     {
         StartText.GetComponent<TextFadeOut>().FadeOut();
 
-        //set active method
+        //set active method for roof and start text
         SetObjectsActive();
 
         //spawns the intels randomly
         randomNumber = Random.Range(0, 5);
         SpawnIntelLocationsRandom(randomNumber, MessSpawnPoints, MessObject);
+
+        //spawns the random spawn enemies that will activate when the player is near and in sight, like a jumpscare enemy
+        if (SQRightRandomEnemy.activeSelf == false)
+        {
+            //reusing the spawn intel locations method because it does the same.
+            SpawnIntelLocationsRandom(12, SQRightSpawnPoints, SQRightRandomEnemy);
+        }
     }
 
     void SetObjectsActive()
@@ -65,5 +75,11 @@ public class StartLevelOneScript : MonoBehaviour
 
         //clears the list for next object
         childrenList.Clear();
+
+        //sets the gameobject active if it's not already
+        if (toMoveObject.activeSelf == false)
+        {
+            toMoveObject.SetActive(true);
+        }
     }
 }
