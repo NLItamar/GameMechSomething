@@ -16,6 +16,8 @@ public class StartLevelOneScript : MonoBehaviour
 
     private int randomNumber;
 
+    public int SQRightSpawnNumber;
+
     public GameObject SQRightRandomEnemy;
     public GameObject SQRightSpawnPoints;
 
@@ -35,7 +37,7 @@ public class StartLevelOneScript : MonoBehaviour
         if (SQRightRandomEnemy.activeSelf == false)
         {
             //reusing the spawn intel locations method because it does the same.
-            SpawnIntelLocationsRandom(12, SQRightSpawnPoints, SQRightRandomEnemy);
+            SpawnIntelLocationsRandom(Random.Range(0, SQRightSpawnNumber), SQRightSpawnPoints, SQRightRandomEnemy);
         }
     }
 
