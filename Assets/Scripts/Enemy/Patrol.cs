@@ -9,18 +9,31 @@ public class Patrol : MonoBehaviour
     private int destPoint = 0;
     private NavMeshAgent agent;
 
+    private bool mustPatrol;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
 
         agent.enabled = true;
 
+        if(points.Length == 0)
+        {
+            mustPatrol = false;
+        }
+        else
+        {
+            mustPatrol = true;
+        }
+
         // Disabling auto-braking allows for continuous movement
         // between points (ie, the agent doesn't slow down as it
         // approaches a destination point).
         agent.autoBraking = false;
-
-        GotoNextPoint();
+        if(mustPatrol)
+        {
+            GotoNextPoint();
+        }
     }
 
 
@@ -45,14 +58,9 @@ public class Patrol : MonoBehaviour
     {
         // Choose the next destination point when the agent gets
         // close to the current one.
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (!agent.pathPending && agent.remainingDistance < 0.5f && mustPatrol)
         {
             GotoNextPoint();
-        }
-
-        if (points.Length == 0)
-        {
-            agent.speed = 0f;
         }
     }
 }

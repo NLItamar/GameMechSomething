@@ -29,8 +29,8 @@ TagManager:
   - Enemies
   - Walls
   - EnemyCanThrough
-  - 
-  - 
+  - Player
+  - Particles
   - 
   - 
   - 

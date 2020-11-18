@@ -11,6 +11,7 @@ public class ActiveBehaviourScript : MonoBehaviour
 
     //is this a jump scare enemy?
     public bool isJumpyEnemy;
+    private bool isJumpyParticleEnabled;
 
     [SerializeField] private GameObject Player;
     private ParticleSystem leParticles;
@@ -19,26 +20,43 @@ public class ActiveBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //points to the thingies
         Player = GameObject.FindGameObjectWithTag("Player");
-        leParticles = Player.GetComponentInChildren<ParticleSystem>();
-        leAudio = Player.GetComponent<AudioSource>();
+        leParticles = this.gameObject.GetComponentInChildren<ParticleSystem>();
+        leAudio = this.gameObject.GetComponent<AudioSource>();
 
+
+        //sets the bools active if the enemy is actually enabled
         if(this.gameObject.activeSelf)
         {
             isActived = true;
+            isJumpyParticleEnabled = true;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //make the enemy always face the player
+        //make the enemy always face the player at all time
         this.transform.LookAt(Player.transform);
 
-        if (isJumpyEnemy && Vector3.Distance(Player.transform.position, this.transform.position) > 20f)
+        //check if the enemy is a jumpscare one, distance from player and if it's emitting particles
+        if (isJumpyEnemy && Vector3.Distance(Player.transform.position, this.transform.position) > 20f && isJumpyParticleEnabled)
         {
-            leParticles.gameObject.SetActive(false);
-            leAudio.enabled = false;
+            DisableParticleStuffs();
         }
+    }
+
+    void DisableParticleStuffs()
+    {
+        Debug.Log("disables " + this.gameObject);
+        //stops the new particles from spawning, yet does not disable the system
+        leParticles.Stop();
+        //clears the current particles or else it gets funky wonky
+        leParticles.Clear();
+        //disables the audio, whilst not disabling the component
+        leAudio.enabled = false;
+        //so this method isn't called again for no reason
+        isJumpyParticleEnabled = false;
     }
 }

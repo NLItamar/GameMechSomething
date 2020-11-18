@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2161282570512321093}
   - component: {fileID: 6043082514859084517}
   - component: {fileID: 8702209243773659916}
-  m_Layer: 11
+  m_Layer: 15
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5102,3 +5102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d385ec086f8dc644a446adafed8b4bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActived: 0
+  isJumpyEnemy: 0
+  Player: {fileID: 0}
