@@ -10208,6 +10208,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: distanceMeasure
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: followDistance
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8858324862382ae4ab2965044affbd89, type: 3}
 --- !u!4 &699151697 stripped

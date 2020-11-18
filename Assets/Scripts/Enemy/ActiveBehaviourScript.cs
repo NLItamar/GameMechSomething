@@ -9,13 +9,21 @@ public class ActiveBehaviourScript : MonoBehaviour
     //to do for later, might increase performance especially for lower end pc's
     public bool isActived;
 
+    private bool isFollowingPlayer;
+
     //is this a jump scare enemy?
     public bool isJumpyEnemy;
     private bool isJumpyParticleEnabled;
+    private bool isInSight;
 
     [SerializeField] private GameObject Player;
     private ParticleSystem leParticles;
     private AudioSource leAudio;
+
+    public float distanceMeasure;
+    public float followDistance;
+
+    RaycastHit hit;
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +33,14 @@ public class ActiveBehaviourScript : MonoBehaviour
         leParticles = this.gameObject.GetComponentInChildren<ParticleSystem>();
         leAudio = this.gameObject.GetComponent<AudioSource>();
 
+        //is the player insight of the enemy? well not at start
+        isInSight = false;
+
+        //enemy is not following the player at game start or at instantiating
+        isFollowingPlayer = false;
 
         //sets the bools active if the enemy is actually enabled
-        if(this.gameObject.activeSelf)
+        if (this.gameObject.activeSelf)
         {
             isActived = true;
             isJumpyParticleEnabled = true;
@@ -40,10 +53,21 @@ public class ActiveBehaviourScript : MonoBehaviour
         //make the enemy always face the player at all time
         this.transform.LookAt(Player.transform);
 
-        //check if the enemy is a jumpscare one, distance from player and if it's emitting particles
-        if (isJumpyEnemy && Vector3.Distance(Player.transform.position, this.transform.position) > 20f && isJumpyParticleEnabled)
+        //check if the enemy is a jumpscare one, distance from player and if it's emitting particles and is the player NOT insight
+        if (isJumpyEnemy && Vector3.Distance(Player.transform.position, this.transform.position) > distanceMeasure && isJumpyParticleEnabled && !isInSight)
         {
             DisableParticleStuffs();
+        }
+
+        Vector3 raycastDirection = Player.transform.position - this.transform.position;
+        if(isActived && Physics.Raycast(this.transform.position, raycastDirection, out hit, followDistance))
+        {
+            if(hit.collider.gameObject.tag == "Player")
+            {
+                //follow player code
+                isFollowingPlayer = true;
+                Debug.Log("I SEEEEE YOUUUUU");
+            }
         }
     }
 
@@ -58,5 +82,16 @@ public class ActiveBehaviourScript : MonoBehaviour
         leAudio.enabled = false;
         //so this method isn't called again for no reason
         isJumpyParticleEnabled = false;
+    }
+
+    void EnableParticleStuffs()
+    {
+        Debug.Log("enables " + this.gameObject);
+        //starts the spawning of particles
+        leParticles.Play();
+        //plays the audio
+        leAudio.enabled = true;
+        //sets the is this jumpy boii active now and ready to cause some mayhem
+        isJumpyParticleEnabled = true;
     }
 }
