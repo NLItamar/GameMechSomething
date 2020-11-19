@@ -13,7 +13,7 @@ public class ActiveBehaviourScript : MonoBehaviour
 
     //is this a jump scare enemy?
     public bool isJumpyEnemy;
-    private bool isJumpyParticleEnabled;
+    public bool isJumpyParticleEnabled;
     private bool isInSight;
 
     [SerializeField] private GameObject Player;
@@ -23,7 +23,13 @@ public class ActiveBehaviourScript : MonoBehaviour
     public float distanceMeasure;
     public float followDistance;
 
+    private GameObject gameManager;
+    private CreepManager creepManager;
+    private CreepDetection creepDetection;
+
     RaycastHit hit;
+
+    private bool enteredRaycast;
 
     // Start is called before the first frame update
     void Start()
@@ -38,12 +44,23 @@ public class ActiveBehaviourScript : MonoBehaviour
 
         //enemy is not following the player at game start or at instantiating
         isFollowingPlayer = false;
+        
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        creepManager = gameManager.GetComponent<CreepManager>();
+        creepDetection = this.gameObject.GetComponent<CreepDetection>();
 
+        enteredRaycast = false;
+        
         //sets the bools active if the enemy is actually enabled
         if (this.gameObject.activeSelf)
         {
             isActived = true;
             isJumpyParticleEnabled = true;
+        }
+
+        if(isJumpyEnemy)
+        {
+            DisableParticleStuffs();
         }
     }
 
@@ -51,7 +68,7 @@ public class ActiveBehaviourScript : MonoBehaviour
     void Update()
     {
         //make the enemy always face the player at all time
-        this.transform.LookAt(Player.transform);
+        //this.transform.LookAt(Player.transform);
 
         //check if the enemy is a jumpscare one, distance from player and if it's emitting particles and is the player NOT insight
         if (isJumpyEnemy && Vector3.Distance(Player.transform.position, this.transform.position) > distanceMeasure && isJumpyParticleEnabled && !isInSight)
@@ -59,14 +76,31 @@ public class ActiveBehaviourScript : MonoBehaviour
             DisableParticleStuffs();
         }
 
-        Vector3 raycastDirection = Player.transform.position - this.transform.position;
+        Vector3 raycastDirection = (Player.transform.position - this.transform.position).normalized;
         if(isActived && Physics.Raycast(this.transform.position, raycastDirection, out hit, followDistance))
         {
-            if(hit.collider.gameObject.tag == "Player")
+            Debug.DrawRay(this.transform.position, raycastDirection, Color.green);
+            if(hit.collider.tag == "Player")
             {
-                //follow player code
-                isFollowingPlayer = true;
-                Debug.Log("I SEEEEE YOUUUUU");
+                //enable the shizzles again
+                if(!isJumpyParticleEnabled && isJumpyEnemy)
+                {
+                    EnableParticleStuffs();
+                    //does the red screen thingy
+                    creepManager.Creeping(this.gameObject.transform, creepDetection.distanceMeasure, isJumpyEnemy);
+                }
+
+                if(!enteredRaycast)
+                {
+                    //follow player code
+                    isFollowingPlayer = true;
+                    Debug.Log("I SEEEEE YOUUUUU");
+                    enteredRaycast = true;
+                }
+            }
+            else
+            {
+                enteredRaycast = false;
             }
         }
     }

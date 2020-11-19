@@ -21,13 +21,18 @@ public class CreepManager : MonoBehaviour
         CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
     }
 
-    public void Creeping(Transform enemy, float distanceMeasure)
+    public void Creeping(Transform enemy, float distanceMeasure, bool isEnemyOnline)
     {
-        creepOn = true;
-        Debug.Log("creep is on");
+        Debug.Log(isEnemyOnline);
 
-        this.enemy = enemy;
-        this.distanceMeasure = distanceMeasure;
+        if(isEnemyOnline)
+        {
+            creepOn = true;
+            Debug.Log("creep is on");
+
+            this.enemy = enemy;
+            this.distanceMeasure = distanceMeasure;
+        }
     }
 
     private void Update()

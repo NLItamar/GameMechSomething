@@ -30,9 +30,11 @@ public class JournalProgression : MonoBehaviour
 
     //int caseSwitch;
 
+    public bool firstEncounter;
+
     private void Start()
     {
-        
+        firstEncounter = false;
     }
 
     public void JournalAddText(string objectName)

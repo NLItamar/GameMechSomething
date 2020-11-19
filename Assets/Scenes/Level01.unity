@@ -582,6 +582,7 @@ MonoBehaviour:
   OFSpawnPoints: {fileID: 946885116}
   numberOfSQPoints: 30
   numberOfOQPoints: 0
+  firstEncounter: 0
 --- !u!114 &12115376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10211,7 +10212,7 @@ PrefabInstance:
     - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
       propertyPath: distanceMeasure
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
@@ -12657,6 +12658,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimpleEnemyOne
       objectReference: {fileID: 0}
+    - target: {fileID: 5828468180476139663, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: distanceMeasure
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: followDistance
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8858324862382ae4ab2965044affbd89, type: 3}
 --- !u!4 &809552485 stripped
@@ -13572,6 +13588,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: distanceMeasure
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: followDistance
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8858324862382ae4ab2965044affbd89, type: 3}
@@ -14885,6 +14911,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: distanceMeasure
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: followDistance
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8858324862382ae4ab2965044affbd89, type: 3}
@@ -29580,6 +29616,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: SimpleEnemyOne
       objectReference: {fileID: 0}
+    - target: {fileID: 5828468180476139663, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: distanceMeasure
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: followDistance
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8858324862382ae4ab2965044affbd89, type: 3}
 --- !u!4 &1470222249 stripped
@@ -34930,6 +34981,16 @@ PrefabInstance:
       propertyPath: isJumpyEnemy
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: distanceMeasure
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: followDistance
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8858324862382ae4ab2965044affbd89, type: 3}
 --- !u!4 &1833218210 stripped
@@ -39571,6 +39632,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: distanceMeasure
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8536877753633569033, guid: 8858324862382ae4ab2965044affbd89,
+        type: 3}
+      propertyPath: followDistance
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

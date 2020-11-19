@@ -16,6 +16,8 @@ public class CreepDetection : MonoBehaviour
 
     private bool firstEncounter;
 
+    private bool isEnemyActive;
+
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -23,11 +25,14 @@ public class CreepDetection : MonoBehaviour
         CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
 
         shouldICheck = true;
-        firstEncounter = false;
+        firstEncounter = gameManager.GetComponent<JournalProgression>().firstEncounter;
+        isEnemyActive = this.gameObject.GetComponent<ActiveBehaviourScript>().isJumpyParticleEnabled;
     }
 
     void Update()
     {
+        isEnemyActive = this.gameObject.GetComponent<ActiveBehaviourScript>().isJumpyParticleEnabled;
+
         float dist = Vector3.Distance(Player.transform.position, this.transform.position);
 
         //clusterfuck that is the creeping of the screen with enemies closeby(gonna do this different later on!!! and moving it to CreepManager!!!)
@@ -35,7 +40,7 @@ public class CreepDetection : MonoBehaviour
         if (dist <= distanceMeasure && gameManager.GetComponent<CreepManager>().creepOn == false && shouldICheck)
         {
             //does the colour thingy
-            gameManager.GetComponent<CreepManager>().Creeping(this.transform, distanceMeasure);
+            gameManager.GetComponent<CreepManager>().Creeping(this.transform, distanceMeasure, isEnemyActive);
             if(firstEncounter == false)
             {
                 gameManager.GetComponent<CreepManager>().FirstEncounter();
