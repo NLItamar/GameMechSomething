@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ActiveBehaviourScript : MonoBehaviour
 {
@@ -26,10 +27,17 @@ public class ActiveBehaviourScript : MonoBehaviour
     private GameObject gameManager;
     private CreepManager creepManager;
     private CreepDetection creepDetection;
+    private StartLevelOneScript startLevelOneScript;
 
     RaycastHit hit;
 
     private bool enteredRaycast;
+
+    private NavMeshAgent agent;
+
+    private Transform playerLastKnowLocation;
+
+    private bool isCoroutineExecuting;
 
     // Start is called before the first frame update
     void Start()
@@ -48,9 +56,13 @@ public class ActiveBehaviourScript : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         creepManager = gameManager.GetComponent<CreepManager>();
         creepDetection = this.gameObject.GetComponent<CreepDetection>();
+        startLevelOneScript = gameManager.GetComponent<StartLevelOneScript>();
 
         enteredRaycast = false;
-        
+        isCoroutineExecuting = false;
+
+        agent = GetComponent<NavMeshAgent>();
+
         //sets the bools active if the enemy is actually enabled
         if (this.gameObject.activeSelf)
         {
@@ -103,6 +115,18 @@ public class ActiveBehaviourScript : MonoBehaviour
                 enteredRaycast = false;
             }
         }
+
+        if(isFollowingPlayer && enteredRaycast)
+        {
+            //as long as the enemy has the player in it's raycast it'll know it's last location until the player is out of it's raycast
+            playerLastKnowLocation = Player.transform;
+            FollowPlayer(playerLastKnowLocation);
+        }
+        else if(isFollowingPlayer && !enteredRaycast)
+        {
+            //goes to the last know location and...
+            GoToLastKnowPlayerLocation(playerLastKnowLocation);
+        }
     }
 
     void DisableParticleStuffs()
@@ -127,5 +151,58 @@ public class ActiveBehaviourScript : MonoBehaviour
         leAudio.enabled = true;
         //sets the is this jumpy boii active now and ready to cause some mayhem
         isJumpyParticleEnabled = true;
+    }
+
+    //follow player methods
+    void FollowPlayer(Transform lastKnowLocation)
+    {
+        //Debug.Log("Go to player");
+        agent.destination = lastKnowLocation.position;
+
+        agent.autoBraking = false;
+    }
+
+    void GoToLastKnowPlayerLocation(Transform lastKnowLocation)
+    {
+        Debug.Log("Go to last know player location");
+        agent.destination = lastKnowLocation.position;
+
+        agent.autoBraking = true;
+
+        if (isJumpyEnemy && isFollowingPlayer && agent.remainingDistance <= 0.5f)
+        {
+            Debug.Log("starting countdown!");
+
+            StartCoroutine(ExecuteAfterTime(5));
+        }
+    }
+
+    //gotta make this reusable for other jumpyboiis
+    void SpawnOtherSpot()
+    {
+        isCoroutineExecuting = true;
+        agent.enabled = false;
+        startLevelOneScript.SpawnToRandomFromList
+                (Random.Range(0, startLevelOneScript.SQRightSpawnNumber), startLevelOneScript.SQRightSpawnPoints, startLevelOneScript.SQRightRandomEnemy);
+        agent.enabled = true;
+        isFollowingPlayer = false;
+        DisableParticleStuffs();
+    }
+
+    IEnumerator ExecuteAfterTime(float time)
+    {
+        if (isCoroutineExecuting)
+        {
+            yield break;
+        }
+
+        isCoroutineExecuting = true;
+
+        yield return new WaitForSeconds(time);
+
+        //execution in the thingy after the delay
+        SpawnOtherSpot();
+
+        isCoroutineExecuting = false;
     }
 }

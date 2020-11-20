@@ -5104,4 +5104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActived: 0
   isJumpyEnemy: 0
+  isJumpyParticleEnabled: 0
   Player: {fileID: 0}
+  distanceMeasure: 0
+  followDistance: 0

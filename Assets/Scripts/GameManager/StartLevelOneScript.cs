@@ -31,13 +31,13 @@ public class StartLevelOneScript : MonoBehaviour
 
         //spawns the intels randomly
         randomNumber = Random.Range(0, 5);
-        SpawnIntelLocationsRandom(randomNumber, MessSpawnPoints, MessObject);
+        SpawnToRandomFromList(randomNumber, MessSpawnPoints, MessObject);
 
         //spawns the random spawn enemies that will activate when the player is near and in sight, like a jumpscare enemy
         if (SQRightRandomEnemy.activeSelf == false)
         {
             //reusing the spawn intel locations method because it does the same.
-            SpawnIntelLocationsRandom(Random.Range(0, SQRightSpawnNumber), SQRightSpawnPoints, SQRightRandomEnemy);
+            SpawnToRandomFromList(Random.Range(0, SQRightSpawnNumber), SQRightSpawnPoints, SQRightRandomEnemy);
         }
     }
 
@@ -54,7 +54,7 @@ public class StartLevelOneScript : MonoBehaviour
     //reusable method that moves an interactable object to another location
     //needs a random number as much as the locations there are, which are the transform positions of the empty gameobjects
     //needs the parent of those empty gameobjects and the interactable object itself
-    public void SpawnIntelLocationsRandom(int randomSeed, GameObject randomSpawnPoints, GameObject toMoveObject)
+    public void SpawnToRandomFromList(int randomSeed, GameObject randomSpawnPoints, GameObject toMoveObject)
     {
         childrenList = new List<GameObject>();
 
@@ -65,7 +65,7 @@ public class StartLevelOneScript : MonoBehaviour
         //gives the location of the spot it'll move it to
         Debug.Log(childrenList[randomSeed].transform.position);
 
-        //moves the interact object
+        //moves the object
         toMoveObject.transform.position = childrenList[randomSeed].transform.position;
         //rotates it to the appropriate rotation
         Vector3 eulerRotation = new Vector3(

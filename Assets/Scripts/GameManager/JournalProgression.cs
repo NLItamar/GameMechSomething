@@ -55,7 +55,7 @@ public class JournalProgression : MonoBehaviour
             case "MessObject":
                 journalText.text = journalText.text + System.Environment.NewLine + messText + System.Environment.NewLine;
                 SQObject.SetActive(true);
-                this.gameObject.GetComponent<StartLevelOneScript>().SpawnIntelLocationsRandom(Random.Range(0, numberOfSQPoints), SQSpawnPoints, SQObject);
+                this.gameObject.GetComponent<StartLevelOneScript>().SpawnToRandomFromList(Random.Range(0, numberOfSQPoints), SQSpawnPoints, SQObject);
                 break;
             case "SleepingQuarterObject":
                 journalText.text = journalText.text + System.Environment.NewLine + sleepQuarterText + System.Environment.NewLine;
