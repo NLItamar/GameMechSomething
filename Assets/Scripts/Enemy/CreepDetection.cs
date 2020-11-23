@@ -18,11 +18,14 @@ public class CreepDetection : MonoBehaviour
 
     private bool isEnemyActive;
 
+    private CreepManager creepManager;
+
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
+        creepManager = gameManager.GetComponent<CreepManager>();
 
         shouldICheck = true;
         firstEncounter = gameManager.GetComponent<JournalProgression>().firstEncounter;
@@ -40,7 +43,7 @@ public class CreepDetection : MonoBehaviour
         if (dist <= distanceMeasure && gameManager.GetComponent<CreepManager>().creepOn == false && shouldICheck)
         {
             //does the colour thingy
-            gameManager.GetComponent<CreepManager>().Creeping(this.transform, distanceMeasure, isEnemyActive);
+            creepManager.Creeping(this.transform, distanceMeasure, isEnemyActive);
             if(firstEncounter == false)
             {
                 gameManager.GetComponent<CreepManager>().FirstEncounter();

@@ -11,6 +11,7 @@ public class ActiveBehaviourScript : MonoBehaviour
     public bool isActived;
 
     private bool isFollowingPlayer;
+    private bool goingToLastKnowLocation;
 
     //is this a jump scare enemy?
     public bool isJumpyEnemy;
@@ -35,7 +36,7 @@ public class ActiveBehaviourScript : MonoBehaviour
 
     private NavMeshAgent agent;
 
-    private Transform playerLastKnowLocation;
+    private Transform playerLastKnownLocation;
 
     private bool isCoroutineExecuting;
 
@@ -60,6 +61,9 @@ public class ActiveBehaviourScript : MonoBehaviour
 
         enteredRaycast = false;
         isCoroutineExecuting = false;
+        
+        //check to see if the enemy is on route to the player's last known location
+        goingToLastKnowLocation = false;
 
         agent = GetComponent<NavMeshAgent>();
 
@@ -72,6 +76,7 @@ public class ActiveBehaviourScript : MonoBehaviour
 
         if(isJumpyEnemy)
         {
+            //disable particles just incase it is active on startup
             DisableParticleStuffs();
         }
     }
@@ -102,12 +107,14 @@ public class ActiveBehaviourScript : MonoBehaviour
                     creepManager.Creeping(this.gameObject.transform, creepDetection.distanceMeasure, isJumpyEnemy);
                 }
 
+                //if the player is in sight and for the first time in sight it'll set the values true for following the player and a lil sauron ref
                 if(!enteredRaycast)
                 {
                     //follow player code
                     isFollowingPlayer = true;
                     Debug.Log("I SEEEEE YOUUUUU");
                     enteredRaycast = true;
+                    goingToLastKnowLocation = false;
                 }
             }
             else
@@ -119,13 +126,27 @@ public class ActiveBehaviourScript : MonoBehaviour
         if(isFollowingPlayer && enteredRaycast)
         {
             //as long as the enemy has the player in it's raycast it'll know it's last location until the player is out of it's raycast
-            playerLastKnowLocation = Player.transform;
-            FollowPlayer(playerLastKnowLocation);
+            playerLastKnownLocation = Player.transform;
+            FollowPlayer(playerLastKnownLocation);
         }
-        else if(isFollowingPlayer && !enteredRaycast)
+
+        if(isFollowingPlayer && !enteredRaycast)
         {
             //goes to the last know location and...
-            GoToLastKnowPlayerLocation(playerLastKnowLocation);
+            GoToLastKnownPlayerLocation(playerLastKnownLocation);
+        }
+
+        //if the enemy is on route to the player's last known location, check if it arrives(nearly there) and set a countdown to respawn
+        if(isJumpyEnemy && agent.remainingDistance <= 0.5f && goingToLastKnowLocation)
+        {
+            Debug.Log("starting countdown!");
+
+            StartCoroutine(ExecuteAfterTime(5));
+        }
+
+        if(!goingToLastKnowLocation && isFollowingPlayer && isCoroutineExecuting)
+        {
+            StopCoroutine("ExecuteAfterTime");
         }
     }
 
@@ -159,21 +180,24 @@ public class ActiveBehaviourScript : MonoBehaviour
         //Debug.Log("Go to player");
         agent.destination = lastKnowLocation.position;
 
-        agent.autoBraking = false;
+        if(agent.autoBraking)
+        {
+            agent.autoBraking = false;
+        }
     }
 
-    void GoToLastKnowPlayerLocation(Transform lastKnowLocation)
+    void GoToLastKnownPlayerLocation(Transform lastKnowLocation)
     {
-        Debug.Log("Go to last know player location");
+        isFollowingPlayer = false;
+
+        Debug.Log("Go to last known player location");
         agent.destination = lastKnowLocation.position;
 
         agent.autoBraking = true;
 
-        if (isJumpyEnemy && isFollowingPlayer && agent.remainingDistance <= 0.5f)
+        if (isJumpyEnemy)
         {
-            Debug.Log("starting countdown!");
-
-            StartCoroutine(ExecuteAfterTime(5));
+            goingToLastKnowLocation = true;
         }
     }
 
@@ -185,7 +209,7 @@ public class ActiveBehaviourScript : MonoBehaviour
         startLevelOneScript.SpawnToRandomFromList
                 (Random.Range(0, startLevelOneScript.SQRightSpawnNumber), startLevelOneScript.SQRightSpawnPoints, startLevelOneScript.SQRightRandomEnemy);
         agent.enabled = true;
-        isFollowingPlayer = false;
+        goingToLastKnowLocation = false;
         DisableParticleStuffs();
     }
 
