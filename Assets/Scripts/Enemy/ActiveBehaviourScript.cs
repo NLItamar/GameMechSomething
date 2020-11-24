@@ -13,22 +13,27 @@ public class ActiveBehaviourScript : MonoBehaviour
     private bool isFollowingPlayer;
     private bool goingToLastKnowLocation;
 
-    //is this a jump scare enemy?
+    //is this a jump scare enemy? or normal?
     public bool isJumpyEnemy;
+    public bool isNormalPatrolEnemy;
+
+    //are the particles enabled and running?
     public bool isJumpyParticleEnabled;
+
     private bool isInSight;
 
     [SerializeField] private GameObject Player;
     private ParticleSystem leParticles;
     private AudioSource leAudio;
 
-    public float distanceMeasure;
-    public float followDistance;
+    private float distanceMeasureToDisableParticles;
+    private float followDistance;
 
     private GameObject gameManager;
     private CreepManager creepManager;
     private CreepDetection creepDetection;
     private StartLevelOneScript startLevelOneScript;
+    private EnemyValuesScript enemyValues;
 
     RaycastHit hit;
 
@@ -39,6 +44,8 @@ public class ActiveBehaviourScript : MonoBehaviour
     private Transform playerLastKnownLocation;
 
     private bool isCoroutineExecuting;
+
+    private float distanceToPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -54,11 +61,14 @@ public class ActiveBehaviourScript : MonoBehaviour
         //enemy is not following the player at game start or at instantiating
         isFollowingPlayer = false;
         
+        //refs
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         creepManager = gameManager.GetComponent<CreepManager>();
         creepDetection = this.gameObject.GetComponent<CreepDetection>();
         startLevelOneScript = gameManager.GetComponent<StartLevelOneScript>();
+        enemyValues = gameManager.GetComponent<EnemyValuesScript>();
 
+        //just incase, because player is not in raycast at startup and the couroutine is not executing at startup
         enteredRaycast = false;
         isCoroutineExecuting = false;
         
@@ -79,16 +89,31 @@ public class ActiveBehaviourScript : MonoBehaviour
             //disable particles just incase it is active on startup
             DisableParticleStuffs();
         }
+
+        //enemy values
+        if(isJumpyEnemy)
+        {
+            distanceMeasureToDisableParticles = enemyValues.enemyJumpyParticlesDistance;
+            followDistance = enemyValues.followJumpyDistance;
+        }
+        if(isNormalPatrolEnemy)
+        {
+            distanceMeasureToDisableParticles = enemyValues.enemyNormalParticlesDistance;
+            followDistance = enemyValues.followNormalDistance;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //make the enemy always face the player at all time
+        //make the enemy always face the player at all time, not needed tho
         //this.transform.LookAt(Player.transform);
 
+        //distance player and this enemy, keeping it out of the if statement
+        distanceToPlayer = Vector3.Distance(Player.transform.position, this.transform.position);
+
         //check if the enemy is a jumpscare one, distance from player and if it's emitting particles and is the player NOT insight
-        if (isJumpyEnemy && Vector3.Distance(Player.transform.position, this.transform.position) > distanceMeasure && isJumpyParticleEnabled && !isInSight)
+        if (isJumpyEnemy && distanceToPlayer > distanceMeasureToDisableParticles && isJumpyParticleEnabled && !isInSight)
         {
             DisableParticleStuffs();
         }
@@ -104,7 +129,7 @@ public class ActiveBehaviourScript : MonoBehaviour
                 {
                     EnableParticleStuffs();
                     //does the red screen thingy
-                    creepManager.Creeping(this.gameObject.transform, creepDetection.distanceMeasure, isJumpyEnemy);
+                    creepManager.Creeping(this.gameObject.transform, creepDetection.creepingDistanceMeasure, isJumpyEnemy);
                 }
 
                 //if the player is in sight and for the first time in sight it'll set the values true for following the player and a lil sauron ref

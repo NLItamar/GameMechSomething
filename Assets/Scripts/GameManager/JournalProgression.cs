@@ -14,7 +14,7 @@ public class JournalProgression : MonoBehaviour
 
     public GameObject spawnObject;
 
-    //change this to a list later on
+    //change this to a list later on?
     public GameObject SpawnInteractable;
     public GameObject MessObject;
     public GameObject SQObject;
