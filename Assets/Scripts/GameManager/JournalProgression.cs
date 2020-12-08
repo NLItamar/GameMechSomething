@@ -70,7 +70,10 @@ public class JournalProgression : MonoBehaviour
                 MainFlashlight.SetActive(false);
                 break;
             case "FirstEnemyEncounter":
-                journalText.text = journalText.text + System.Environment.NewLine + firstEnemyText + System.Environment.NewLine;
+                if(!firstEncounter)
+                {
+                    journalText.text = journalText.text + System.Environment.NewLine + firstEnemyText + System.Environment.NewLine;
+                }
                 break;
             default:
                 journalText.text = "Something went wrong";
