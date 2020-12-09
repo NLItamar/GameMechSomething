@@ -14,11 +14,14 @@ public class CreepManager : MonoBehaviour
     private Transform enemy;
     private float distanceMeasure;
 
+    private JournalProgression journalProgression;
+
     // Start is called before the first frame update
     void Start()
     {
         creepOn = false;
         CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
+        journalProgression = this.GetComponent<JournalProgression>();
     }
 
     public void Creeping(Transform enemy, float distanceMeasure, bool isEnemyOnline)
@@ -45,7 +48,15 @@ public class CreepManager : MonoBehaviour
 
     public void FirstEncounter()
     {
-        this.GetComponent<JournalProgression>().JournalAddText("FirstEnemyEncounter");
-        JournalImage.color = Color.green;
+        //double check
+        if(!journalProgression.firstEncounter)
+        {
+            this.GetComponent<JournalProgression>().JournalAddText("FirstEnemyEncounter");
+            JournalImage.color = Color.green;
+        }
+        else
+        {
+            Debug.Log("Already had first encounter");
+        }
     }
 }

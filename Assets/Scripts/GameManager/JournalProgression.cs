@@ -70,10 +70,7 @@ public class JournalProgression : MonoBehaviour
                 MainFlashlight.SetActive(false);
                 break;
             case "FirstEnemyEncounter":
-                if(!firstEncounter)
-                {
-                    journalText.text = journalText.text + System.Environment.NewLine + firstEnemyText + System.Environment.NewLine;
-                }
+                FirstEncounter();
                 break;
             default:
                 journalText.text = "Something went wrong";
@@ -86,5 +83,14 @@ public class JournalProgression : MonoBehaviour
         //ends the game in a sense
         //endText.gameObject.SetActive(true);
         GetComponent<EndLevelScript>().EndLevel();
+    }
+
+    private void FirstEncounter()
+    {
+        if(!firstEncounter)
+        {
+            journalText.text = journalText.text + System.Environment.NewLine + firstEnemyText + System.Environment.NewLine;
+            firstEncounter = true;
+        }
     }
 }
