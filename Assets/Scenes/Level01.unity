@@ -108,7 +108,7 @@ NavMeshSettings:
     serializedVersion: 2
     agentTypeID: 0
     agentRadius: 0.5
-    agentHeight: 2
+    agentHeight: 1
     agentSlope: 45
     agentClimb: 0.4
     ledgeDropHeight: 0
@@ -613,9 +613,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyNormalParticlesDistance: 30
   enemyJumpyParticlesDistance: 30
-  creepNormalDistance: 20
+  creepNormalDistance: 15
   creepJumpyDistance: 10
-  followNormalDistance: 15
+  followNormalDistance: 12.5
   followJumpyDistance: 10
   speedJumpyFollow: 0
   speedNormalFollow: 0
@@ -6463,7 +6463,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416191119}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -44}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 218732289}
@@ -10213,7 +10213,7 @@ PrefabInstance:
     - target: {fileID: 5828468180476139662, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 5828468180476139662, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
@@ -13517,7 +13517,7 @@ PrefabInstance:
     - target: {fileID: 5828468180476139662, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 64
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5828468180476139662, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
@@ -14845,7 +14845,7 @@ PrefabInstance:
     - target: {fileID: 5828468180476139662, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 57
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5828468180476139662, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
@@ -16236,7 +16236,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &999682828
 Transform:
@@ -19249,7 +19249,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1160049665}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.00001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1764977709}
@@ -39511,7 +39511,7 @@ PrefabInstance:
     - target: {fileID: 5828468180476139662, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -44
       objectReference: {fileID: 0}
     - target: {fileID: 5828468180476139662, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
