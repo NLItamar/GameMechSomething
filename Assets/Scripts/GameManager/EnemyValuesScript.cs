@@ -24,12 +24,24 @@ public class EnemyValuesScript : MonoBehaviour
         Debug.Log("values started");
 
         //view the values when the game starts
+        //IN CONSOLE
         Debug.Log(
+            "enemyNormalParticlesDistance: " +
             enemyNormalParticlesDistance + " " + 
-            enemyJumpyParticlesDistance + " " + 
+
+            "enemyJumpyParticlesDistance:  " +
+            enemyJumpyParticlesDistance + " " +
+
+            "creepNormalDistance:  " +
             creepNormalDistance + " " +
+
+            "creepJumpyDistance:  " +
             creepJumpyDistance + " " +
+
+            "followNormalDistance:  " +
             followNormalDistance + " " +
+
+            "followJumpyDistance:  " +
             followJumpyDistance
             );
     }
