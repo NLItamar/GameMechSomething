@@ -8,6 +8,9 @@ public class LightActivationScript : MonoBehaviour
     private GameObject lights;
     public float distance;
 
+    public bool isJumpyLight;
+    public bool isOff;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -17,12 +20,20 @@ public class LightActivationScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector3.Distance(this.transform.position, player.transform.position) <= distance && lights.activeInHierarchy == false)
+        if(isJumpyLight)
+        {
+            CheckJumpyLightDistance();
+        }
+    }
+
+    private void CheckJumpyLightDistance()
+    {
+        if (Vector3.Distance(this.transform.position, player.transform.position) <= distance && lights.activeInHierarchy == false)
         {
             lights.SetActive(true);
         }
 
-        else if(Vector3.Distance(this.transform.position, player.transform.position) > distance && lights.activeInHierarchy == true)
+        else if (Vector3.Distance(this.transform.position, player.transform.position) > distance && lights.activeInHierarchy == true)
         {
             lights.SetActive(false);
         }

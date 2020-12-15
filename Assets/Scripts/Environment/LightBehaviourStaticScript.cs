@@ -18,20 +18,23 @@ public class LightBehaviourStaticScript : MonoBehaviour
     private float randomTimeChecker;
 
     private bool isOn;
+    private bool isOff;
+
+    private LightActivationScript lightActivationScript;
 
     void Start()
     {
         myLight = GetComponent<Light>();
         randomTime = Random.Range(1f, maxCheck);
         randomTimeChecker = maxCheck - 1f;
-
-        isOn = true;
+        lightActivationScript = this.GetComponentInParent<LightActivationScript>();
 
         setIntensity = maxIntensity;
 
         m_Material = GetComponent<Renderer>().material;
 
         isOn = true;
+        isOff = lightActivationScript.isOff;
     }
 
     void Update()
@@ -39,11 +42,18 @@ public class LightBehaviourStaticScript : MonoBehaviour
         //gets a new random for the next 'loop'
         randomTime = Random.Range(1f, maxCheck);
 
-        if(isOn && randomTime >= randomTimeChecker)
+        if(isOn && randomTime >= randomTimeChecker && !isOff)
         {
             FlickerTheLight();
         }
-        //FlickerLight();
+        //check if the light should be off and check if it is not already turned off
+        else if(isOff && myLight.intensity > 0f)
+        {
+            myLight.intensity = 0f;
+            m_Material.DisableKeyword("_EMISSION");
+        }
+        //keep checking this value so it can be changed during runtime
+        isOff = lightActivationScript.isOff;
     }
 
     public void FlickerTheLight()
@@ -77,31 +87,4 @@ public class LightBehaviourStaticScript : MonoBehaviour
 
         isOn = true;
     }
-
-    /*
-    public void FlickerLight()
-    {
-        //turns the light 'off'
-        if (randomTime >= randomTimeChecker)
-        {
-            myLight.intensity = minIntensity;
-            m_Material.DisableKeyword("_EMISSION");
-        }
-
-        //turns the light 'on'
-        else if (randomTime <= randomTimeChecker)
-        {
-            setIntensity = Random.Range(minIntensity, maxIntensity);
-            Invoke("LightOn", 0.5f);
-        }
-    }
-
-    private void LightOn()
-    {
-        myLight.intensity = maxIntensity;
-        m_Material.EnableKeyword("_EMISSION");
-
-        randomTime = Random.Range(1f, maxCheck);
-    }
-    */
 }
