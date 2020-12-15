@@ -19,6 +19,7 @@ public class LightBehaviourStaticScript : MonoBehaviour
 
     private bool isOn;
     private bool isOff;
+    private bool isAlwaysOn;
 
     private LightActivationScript lightActivationScript;
 
@@ -35,6 +36,7 @@ public class LightBehaviourStaticScript : MonoBehaviour
 
         isOn = true;
         isOff = lightActivationScript.isOff;
+        isAlwaysOn = lightActivationScript.isAlwaysOn;
     }
 
     void Update()
@@ -42,7 +44,7 @@ public class LightBehaviourStaticScript : MonoBehaviour
         //gets a new random for the next 'loop'
         randomTime = Random.Range(1f, maxCheck);
 
-        if(isOn && randomTime >= randomTimeChecker && !isOff)
+        if(isOn && randomTime >= randomTimeChecker && !isOff && !isAlwaysOn)
         {
             FlickerTheLight();
         }

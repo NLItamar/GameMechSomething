@@ -10,6 +10,7 @@ public class LightActivationScript : MonoBehaviour
 
     public bool isJumpyLight;
     public bool isOff;
+    public bool isAlwaysOn;
 
     private void Start()
     {
