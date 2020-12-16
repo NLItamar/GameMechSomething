@@ -14,6 +14,8 @@ TagManager:
   - Flashlight
   - MainFlashlight
   - Crosshair
+  - LightOne
+  - LightTwo
   layers:
   - Default
   - TransparentFX

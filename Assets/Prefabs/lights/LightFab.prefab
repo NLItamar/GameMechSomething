@@ -48,6 +48,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 7
   isJumpyLight: 0
+  isOff: 0
+  isAlwaysOn: 0
+  minIntensityOne: 0.1
+  maxIntensityOne: 0.9
+  normalIntensityOne: 0.4
+  maxCheckOne: 40
+  minIntensityTwo: 0.1
+  maxIntensityTwo: 0.9
+  normalIntensityTwo: 0.4
+  maxCheckTwo: 70
 --- !u!1 &730229410690780629
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +170,7 @@ GameObject:
   - component: {fileID: 730229410752113286}
   m_Layer: 0
   m_Name: MainLight (1)
-  m_TagString: Untagged
+  m_TagString: LightTwo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -432,7 +442,7 @@ GameObject:
   - component: {fileID: 730229411646584021}
   m_Layer: 0
   m_Name: MainLight
-  m_TagString: Untagged
+  m_TagString: LightOne
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

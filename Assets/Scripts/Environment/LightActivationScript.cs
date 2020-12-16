@@ -12,6 +12,16 @@ public class LightActivationScript : MonoBehaviour
     public bool isOff;
     public bool isAlwaysOn;
 
+    public float minIntensityOne;
+    public float maxIntensityOne;
+    public float normalIntensityOne;
+    public int maxCheckOne;
+
+    public float minIntensityTwo;
+    public float maxIntensityTwo;
+    public float normalIntensityTwo;
+    public int maxCheckTwo;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");

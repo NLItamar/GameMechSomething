@@ -8,12 +8,12 @@ public class LightBehaviourStaticScript : MonoBehaviour
 
     Material m_Material;
 
-    public float minIntensity;
-    public float maxIntensity;
+    [SerializeField] private float minIntensity;
+    [SerializeField] private float maxIntensity;
     private float setIntensity;
-    public float normalIntensity;
+    [SerializeField] private float normalIntensity;
 
-    public float maxCheck;
+    [SerializeField] private float maxCheck;
     private float randomTime;
     private float randomTimeChecker;
 
@@ -22,6 +22,8 @@ public class LightBehaviourStaticScript : MonoBehaviour
     private bool isAlwaysOn;
 
     private LightActivationScript lightActivationScript;
+
+    private bool givenWarning;
 
     void Start()
     {
@@ -34,9 +36,29 @@ public class LightBehaviourStaticScript : MonoBehaviour
 
         m_Material = GetComponent<Renderer>().material;
 
+        //should this light be turned on? also a checker further on in the code
         isOn = true;
+
         isOff = lightActivationScript.isOff;
         isAlwaysOn = lightActivationScript.isAlwaysOn;
+
+        //values from the parent depending on what light it is through a tag
+        if(this.gameObject.tag == "LightOne")
+        {
+            minIntensity = lightActivationScript.minIntensityOne;
+            maxIntensity = lightActivationScript.maxIntensityOne;
+            normalIntensity = lightActivationScript.normalIntensityOne;
+            maxCheck = lightActivationScript.maxCheckOne;
+        }
+        else if(this.gameObject.tag == "LightTwo")
+        {
+            minIntensity = lightActivationScript.minIntensityTwo;
+            maxIntensity = lightActivationScript.maxIntensityTwo;
+            normalIntensity = lightActivationScript.normalIntensityTwo;
+            maxCheck = lightActivationScript.maxCheckTwo;
+        }
+
+        givenWarning = false;
     }
 
     void Update()
@@ -44,18 +66,39 @@ public class LightBehaviourStaticScript : MonoBehaviour
         //gets a new random for the next 'loop'
         randomTime = Random.Range(1f, maxCheck);
 
+        //long if else ifffff
+        //lots of checks!!
+        //perhaps change it to a switch case, buttt it works now.
+        //also a check if a warning is given, just incase a light is both checked as off and always on
+
+        //check if the light should be on, if the randomtime is higher or the same as the checker, if it's not an always off light and if it's not an always on light. then flickers it
         if(isOn && randomTime >= randomTimeChecker && !isOff && !isAlwaysOn)
         {
             FlickerTheLight();
+            givenWarning = false;
         }
         //check if the light should be off and check if it is not already turned off
-        else if(isOff && myLight.intensity > 0f)
+        else if(isOff && myLight.intensity > 0f && !isAlwaysOn)
         {
-            myLight.intensity = 0f;
-            m_Material.DisableKeyword("_EMISSION");
+            LightOff();
+            givenWarning = false;
+        }
+        //checks if the light is an always on light, if its not already on and if its not an always off light
+        else if(isAlwaysOn && !isOn && !isOff)
+        {
+            LightNormal();
+            givenWarning = false;
+        }
+        //checks for double bools, gives warning if so
+        else if(isAlwaysOn && isOff && !givenWarning)
+        {
+            isOn = false;
+            Debug.LogWarning("Warning: isAlways on and isOff cannot be true at the same time!! at object: " + this.gameObject);
+            givenWarning = true;
         }
         //keep checking this value so it can be changed during runtime
         isOff = lightActivationScript.isOff;
+        isAlwaysOn = lightActivationScript.isAlwaysOn;
     }
 
     public void FlickerTheLight()
@@ -84,9 +127,17 @@ public class LightBehaviourStaticScript : MonoBehaviour
 
     public void LightNormal()
     {
+        isOn = false;
+
         myLight.intensity = normalIntensity;
         m_Material.SetColor("_EmmisionColor", Color.white * 0.5f);
 
         isOn = true;
+    }
+
+    public void LightOff()
+    {
+        myLight.intensity = 0f;
+        m_Material.DisableKeyword("_EMISSION");
     }
 }
