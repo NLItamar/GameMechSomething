@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f812fe1eb6af5846b7e31f551797734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 7
+  jumpyDistance: 7
   isJumpyLight: 0
   isOff: 0
   isAlwaysOn: 0
