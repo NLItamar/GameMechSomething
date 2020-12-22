@@ -12,7 +12,11 @@ public class JournalProgression : MonoBehaviour
 
     public string spawnText, messText, sleepQuarterText, officerQuarterText, FlashLightText, firstEnemyText;
 
+    //blockades
     public GameObject spawnObject;
+    public GameObject[] messBlockades;
+    public GameObject[] sqBlockades;
+    public GameObject[] ofblockades;
 
     //change this to a list later on?
     public GameObject SpawnInteractable;
@@ -28,13 +32,14 @@ public class JournalProgression : MonoBehaviour
     public int numberOfSQPoints;
     public int numberOfOQPoints;
 
-    //int caseSwitch;
+    private StartLevelOneScript startLevelOneScript;
 
     public bool firstEncounter;
 
     private void Start()
     {
         firstEncounter = false;
+        startLevelOneScript = this.GetComponent<StartLevelOneScript>();
     }
 
     public void JournalAddText(string objectName)
@@ -49,20 +54,46 @@ public class JournalProgression : MonoBehaviour
             case "SpawnObject":
                 journalText.text = journalText.text + System.Environment.NewLine + spawnText + System.Environment.NewLine;
                 spawnObject.SetActive(false);
+                //enable some enemies
+                //
                 //sets the next object active
                 MessObject.SetActive(true);
                 break;
             case "MessObject":
                 journalText.text = journalText.text + System.Environment.NewLine + messText + System.Environment.NewLine;
+                //removes the blockades
+                foreach(GameObject blockade in messBlockades)
+                {
+                    blockade.SetActive(false);
+                }
+                //enable more enemies, cleanup some shitssszzzz
+                //
+                //sets the next intel piece active
                 SQObject.SetActive(true);
-                this.gameObject.GetComponent<StartLevelOneScript>().SpawnToRandomFromList(Random.Range(0, numberOfSQPoints), SQSpawnPoints, SQObject);
+                startLevelOneScript.SpawnToRandomFromList(Random.Range(0, numberOfSQPoints), SQSpawnPoints, SQObject);
                 break;
             case "SleepingQuarterObject":
                 journalText.text = journalText.text + System.Environment.NewLine + sleepQuarterText + System.Environment.NewLine;
+                //removes the blockades
+                foreach(GameObject blockades in sqBlockades)
+                {
+                    blockades.SetActive(false);
+                }
+                //enable some more enemies, cleaup some shitssszzzzz
+                //
+                //sets the next intel active
                 OfficerQObject.SetActive(true);
                 break;
             case "OfficerQuarterObject":
                 journalText.text = journalText.text + System.Environment.NewLine + officerQuarterText + System.Environment.NewLine;
+                //removes the blockades
+                foreach(GameObject blockades in ofblockades)
+                {
+                    blockades.SetActive(false);
+                }
+                //new enemies!!! cleanup some enemies
+                //
+                //opens up the end level doorway
                 EndLevel();
                 break;
             case "MainFlashlight":

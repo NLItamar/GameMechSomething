@@ -22,7 +22,7 @@ public class ActiveBehaviourScript : MonoBehaviour
 
     private bool isInSight;
 
-    [SerializeField] private GameObject Player;
+    private GameObject Player;
     private ParticleSystem leParticles;
     private AudioSource leAudio;
 
@@ -122,7 +122,7 @@ public class ActiveBehaviourScript : MonoBehaviour
         if(isActived && Physics.Raycast(this.transform.position, raycastDirection, out hit, followDistance))
         {
             Debug.DrawRay(this.transform.position, raycastDirection, Color.green);
-            if(hit.collider.tag == "Player")
+            if(hit.collider.CompareTag("Player"))
             {
                 //enable the shizzles again
                 if(!isJumpyParticleEnabled && isJumpyEnemy)
