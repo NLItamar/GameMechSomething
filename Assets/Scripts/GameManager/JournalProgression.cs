@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class JournalProgression : MonoBehaviour
 {
+    //journal progression does more than just the journal, it also progresses the game itself
+    //this script is quite full and needs to be cleansed at some point
+
     public Text journalText;
     public Text endText;
 
@@ -28,6 +31,20 @@ public class JournalProgression : MonoBehaviour
     public GameObject SQSpawnPoints;
     public GameObject OFSpawnPoints;
 
+    //lists of enemies
+    public GameObject[] startEnemies;
+    public GameObject[] afterSpawnEnemies;
+    public GameObject[] afterMessEnemies;
+    public GameObject[] afterSQEnemies;
+    public GameObject[] afterOFEnemies;
+
+    //overarching enemy for hierarchy
+    public GameObject startHierarchy;
+    public GameObject messHierarchy;
+    public GameObject sQHierarchy;
+    public GameObject oFHierarchy;
+
+
     //SQ0 and OF0 doesnt exist so the the max is 'not' exclusive in int random range
     public int numberOfSQPoints;
     public int numberOfOQPoints;
@@ -40,6 +57,8 @@ public class JournalProgression : MonoBehaviour
     {
         firstEncounter = false;
         startLevelOneScript = this.GetComponent<StartLevelOneScript>();
+
+        //add gameobject to the appropriate lists
     }
 
     public void JournalAddText(string objectName)
@@ -122,6 +141,15 @@ public class JournalProgression : MonoBehaviour
         {
             journalText.text = journalText.text + System.Environment.NewLine + firstEnemyText + System.Environment.NewLine;
             firstEncounter = true;
+        }
+    }
+
+    //enable enemies, can be reused for other purposes as well
+    public void EnableEnemies(GameObject[] enemies)
+    {
+        foreach(GameObject enemy in enemies)
+        {
+            enemy.SetActive(true);
         }
     }
 }

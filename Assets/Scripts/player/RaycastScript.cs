@@ -14,8 +14,8 @@ public class RaycastScript : MonoBehaviour
 
     [SerializeField] private LayerMask layerMaskInteract;
     [SerializeField] private Image UICrosshair;
-    [SerializeField] public Image flashLightImage;
-    [SerializeField] public Image journalImage;
+    public Image flashLightImage;
+    public Image journalImage;
 
     private Text tooltipText;
     private bool tooltipTextActive;
