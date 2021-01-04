@@ -44,6 +44,12 @@ public class JournalProgression : MonoBehaviour
     public GameObject sQHierarchy;
     public GameObject oFHierarchy;
 
+    //amount of enemies in each list
+    public int startEnemyCount;
+    public int afterSpawnEnemyCount;
+    public int afterMessEnemyCount;
+    public int afterSQEnemyCount;
+    public int afterOFEnemyCount;
 
     //SQ0 and OF0 doesnt exist so the the max is 'not' exclusive in int random range
     public int numberOfSQPoints;
@@ -58,7 +64,12 @@ public class JournalProgression : MonoBehaviour
         firstEncounter = false;
         startLevelOneScript = this.GetComponent<StartLevelOneScript>();
 
+        //make new lists with the appriopriate count
+        //startEnemies = new GameObject[startEnemyCount];
+        //might continue this in code, for now in editor
+
         //add gameobject to the appropriate lists
+
     }
 
     public void JournalAddText(string objectName)
@@ -68,16 +79,21 @@ public class JournalProgression : MonoBehaviour
         Debug.Log(caseSwitchString + " interacted with this object");
 
         //for later: change to string switch so every journal entry adds by a keyword
+        //for later: clean this up and make a method for every case?? bit messy this lot, might decouple this lot to make it more usable for later ingame
         switch (caseSwitchString)
         {
             case "SpawnObject":
                 journalText.text = journalText.text + System.Environment.NewLine + spawnText + System.Environment.NewLine;
                 spawnObject.SetActive(false);
                 //enable some enemies
-                //
+                foreach(GameObject enemy in afterSpawnEnemies)
+                {
+                    enemy.SetActive(true);
+                }
                 //sets the next object active
                 MessObject.SetActive(true);
                 break;
+
             case "MessObject":
                 journalText.text = journalText.text + System.Environment.NewLine + messText + System.Environment.NewLine;
                 //removes the blockades
@@ -85,12 +101,16 @@ public class JournalProgression : MonoBehaviour
                 {
                     blockade.SetActive(false);
                 }
-                //enable more enemies, cleanup some shitssszzzz
-                //
+                //enable more enemies, cleanup some shitssszzzz?
+                foreach (GameObject enemy in afterMessEnemies)
+                {
+                    enemy.SetActive(true);
+                }
                 //sets the next intel piece active
                 SQObject.SetActive(true);
                 startLevelOneScript.SpawnToRandomFromList(Random.Range(0, numberOfSQPoints), SQSpawnPoints, SQObject);
                 break;
+
             case "SleepingQuarterObject":
                 journalText.text = journalText.text + System.Environment.NewLine + sleepQuarterText + System.Environment.NewLine;
                 //removes the blockades
@@ -99,10 +119,14 @@ public class JournalProgression : MonoBehaviour
                     blockades.SetActive(false);
                 }
                 //enable some more enemies, cleaup some shitssszzzzz
-                //
+                foreach (GameObject enemy in afterSQEnemies)
+                {
+                    enemy.SetActive(true);
+                }
                 //sets the next intel active
                 OfficerQObject.SetActive(true);
                 break;
+
             case "OfficerQuarterObject":
                 journalText.text = journalText.text + System.Environment.NewLine + officerQuarterText + System.Environment.NewLine;
                 //removes the blockades
@@ -111,20 +135,27 @@ public class JournalProgression : MonoBehaviour
                     blockades.SetActive(false);
                 }
                 //new enemies!!! cleanup some enemies
-                //
+                foreach (GameObject enemy in afterOFEnemies)
+                {
+                    enemy.SetActive(true);
+                }
                 //opens up the end level doorway
                 EndLevel();
                 break;
+
             case "MainFlashlight":
                 journalText.text = journalText.text + System.Environment.NewLine + FlashLightText + System.Environment.NewLine;
                 MainFlashlight.SetActive(false);
                 break;
+
             case "FirstEnemyEncounter":
                 FirstEncounter();
                 break;
+
             default:
                 journalText.text = "Something went wrong";
                 break;
+
         }
     }
 

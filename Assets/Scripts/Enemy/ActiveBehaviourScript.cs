@@ -47,6 +47,10 @@ public class ActiveBehaviourScript : MonoBehaviour
 
     private float distanceToPlayer;
 
+    //links for the spawn to new location
+    public int spawnNumber;
+    public GameObject spawnPoints;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -226,13 +230,13 @@ public class ActiveBehaviourScript : MonoBehaviour
         }
     }
 
-    //gotta make this reusable for other jumpyboiis
+    //spawns to the other spot, uses refs that NEED TO BE SET IN THE EDITOR. or afterwards somewhere in code.
     void SpawnOtherSpot()
     {
         isCoroutineExecuting = true;
         agent.enabled = false;
         startLevelOneScript.SpawnToRandomFromList
-                (Random.Range(0, startLevelOneScript.SQRightSpawnNumber), startLevelOneScript.SQRightSpawnPoints, startLevelOneScript.SQRightRandomEnemy);
+                (Random.Range(0, spawnNumber), spawnPoints, this.gameObject);
         agent.enabled = true;
         goingToLastKnowLocation = false;
         DisableParticleStuffs();
