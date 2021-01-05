@@ -38,18 +38,24 @@ public class JournalProgression : MonoBehaviour
     public GameObject[] afterSQEnemies;
     public GameObject[] afterOFEnemies;
 
+    //more lists, for more dynamic change of enemies
+    public GameObject[] dynamicAfterSQEnemies;
+
     //overarching enemy for hierarchy
     public GameObject startHierarchy;
     public GameObject messHierarchy;
     public GameObject sQHierarchy;
     public GameObject oFHierarchy;
 
+    //will get used later on
     //amount of enemies in each list
     public int startEnemyCount;
     public int afterSpawnEnemyCount;
     public int afterMessEnemyCount;
     public int afterSQEnemyCount;
     public int afterOFEnemyCount;
+    //amount of enemies in each dynamic list
+    public int dynamicAfterSQEnemyCount;
 
     //SQ0 and OF0 doesnt exist so the the max is 'not' exclusive in int random range
     public int numberOfSQPoints;
@@ -79,6 +85,7 @@ public class JournalProgression : MonoBehaviour
         Debug.Log(caseSwitchString + " interacted with this object");
 
         //the big ol' string case, with every object picked up something new happens and that is activated here.
+        //! notice ! the case is what happens AFTER IT'S PICKED UP
         //the intel objects themselves get deactivated in another script
         //perhaps decouple most from the cases in easy reusable methods?
         switch (caseSwitchString)
@@ -101,6 +108,10 @@ public class JournalProgression : MonoBehaviour
                 DisableFromList(messBlockades);
                 //enable more enemies
                 EnableThings(afterMessEnemies);
+                //disable some enemies
+                DisableFromList(afterSpawnEnemies);
+                //enable poltergeist enemy
+                //
                 //sets the next intel piece active AND spawns it randomly over a few static locations
                 SQObject.SetActive(true);
                 startLevelOneScript.SpawnToRandomFromList(Random.Range(0, numberOfSQPoints), SQSpawnPoints, SQObject);
@@ -114,7 +125,7 @@ public class JournalProgression : MonoBehaviour
                 //enable some more enemies
                 EnableThings(afterSQEnemies);
                 //disable some enemies??
-                //
+                DisableFromList(dynamicAfterSQEnemies);
                 //sets the next intel active
                 OfficerQObject.SetActive(true);
                 break;
