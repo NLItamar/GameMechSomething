@@ -78,67 +78,56 @@ public class JournalProgression : MonoBehaviour
         caseSwitchString = objectName;
         Debug.Log(caseSwitchString + " interacted with this object");
 
-        //for later: change to string switch so every journal entry adds by a keyword
-        //for later: clean this up and make a method for every case?? bit messy this lot, might decouple this lot to make it more usable for later ingame
+        //the big ol' string case, with every object picked up something new happens and that is activated here.
+        //the intel objects themselves get deactivated in another script
+        //perhaps decouple most from the cases in easy reusable methods?
         switch (caseSwitchString)
         {
             case "SpawnObject":
+                //add the text in the journal
                 journalText.text = journalText.text + System.Environment.NewLine + spawnText + System.Environment.NewLine;
+                //deactivates the spawn object
                 spawnObject.SetActive(false);
                 //enable some enemies
-                foreach(GameObject enemy in afterSpawnEnemies)
-                {
-                    enemy.SetActive(true);
-                }
+                EnableThings(afterSpawnEnemies);
                 //sets the next object active
                 MessObject.SetActive(true);
                 break;
 
             case "MessObject":
+                //add text to journal
                 journalText.text = journalText.text + System.Environment.NewLine + messText + System.Environment.NewLine;
                 //removes the blockades
-                foreach(GameObject blockade in messBlockades)
-                {
-                    blockade.SetActive(false);
-                }
-                //enable more enemies, cleanup some shitssszzzz?
-                foreach (GameObject enemy in afterMessEnemies)
-                {
-                    enemy.SetActive(true);
-                }
-                //sets the next intel piece active
+                DisableFromList(messBlockades);
+                //enable more enemies
+                EnableThings(afterMessEnemies);
+                //sets the next intel piece active AND spawns it randomly over a few static locations
                 SQObject.SetActive(true);
                 startLevelOneScript.SpawnToRandomFromList(Random.Range(0, numberOfSQPoints), SQSpawnPoints, SQObject);
                 break;
 
             case "SleepingQuarterObject":
+                //add text to journal
                 journalText.text = journalText.text + System.Environment.NewLine + sleepQuarterText + System.Environment.NewLine;
                 //removes the blockades
-                foreach(GameObject blockades in sqBlockades)
-                {
-                    blockades.SetActive(false);
-                }
-                //enable some more enemies, cleaup some shitssszzzzz
-                foreach (GameObject enemy in afterSQEnemies)
-                {
-                    enemy.SetActive(true);
-                }
+                DisableFromList(sqBlockades);
+                //enable some more enemies
+                EnableThings(afterSQEnemies);
+                //disable some enemies??
+                //
                 //sets the next intel active
                 OfficerQObject.SetActive(true);
                 break;
 
             case "OfficerQuarterObject":
+                //add text to journal
                 journalText.text = journalText.text + System.Environment.NewLine + officerQuarterText + System.Environment.NewLine;
                 //removes the blockades
-                foreach(GameObject blockades in ofblockades)
-                {
-                    blockades.SetActive(false);
-                }
-                //new enemies!!! cleanup some enemies
-                foreach (GameObject enemy in afterOFEnemies)
-                {
-                    enemy.SetActive(true);
-                }
+                DisableFromList(ofblockades);
+                //new enemies
+                EnableThings(afterOFEnemies);
+                //disable some enemies??
+                //
                 //opens up the end level doorway
                 EndLevel();
                 break;
@@ -153,7 +142,9 @@ public class JournalProgression : MonoBehaviour
                 break;
 
             default:
+                //incase a wrong case is called upon
                 journalText.text = "Something went wrong";
+                Debug.LogError("WRONG SWITCH CASE");
                 break;
 
         }
@@ -166,6 +157,7 @@ public class JournalProgression : MonoBehaviour
         GetComponent<EndLevelScript>().EndLevel();
     }
 
+    //first enemy encounter
     private void FirstEncounter()
     {
         if(!firstEncounter)
@@ -175,12 +167,21 @@ public class JournalProgression : MonoBehaviour
         }
     }
 
-    //enable enemies, can be reused for other purposes as well
-    public void EnableEnemies(GameObject[] enemies)
+    //enables from gameobject list, can be reused for other purposes as well
+    public void EnableThings(GameObject[] things)
     {
-        foreach(GameObject enemy in enemies)
+        foreach(GameObject thing in things)
         {
-            enemy.SetActive(true);
+            thing.SetActive(true);
+        }
+    }
+
+    //disables things, can be reused 
+    public void DisableFromList(GameObject[] things)
+    {
+        foreach(GameObject thing in things)
+        {
+            thing.SetActive(false);
         }
     }
 }

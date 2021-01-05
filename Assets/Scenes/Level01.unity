@@ -8406,7 +8406,7 @@ PrefabInstance:
     - target: {fileID: 5828468180476139663, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
       propertyPath: m_Name
-      value: SimpleEnemySQLeft
+      value: JumpyEnemySQLeft
       objectReference: {fileID: 0}
     - target: {fileID: 5828468180476139663, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
@@ -12892,7 +12892,7 @@ PrefabInstance:
     - target: {fileID: 5828468180476139663, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
       propertyPath: m_Name
-      value: SimpleEnemyMainHallOne
+      value: JumpyEnemyMainHallOne
       objectReference: {fileID: 0}
     - target: {fileID: 5828468180476139663, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
@@ -44751,7 +44751,7 @@ PrefabInstance:
     - target: {fileID: 5828468180476139663, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
       propertyPath: m_Name
-      value: SimpleEnemySQRightR
+      value: JumpyEnemySQRightR
       objectReference: {fileID: 0}
     - target: {fileID: 5828468180476139663, guid: 8858324862382ae4ab2965044affbd89,
         type: 3}
