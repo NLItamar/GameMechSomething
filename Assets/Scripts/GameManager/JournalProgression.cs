@@ -144,7 +144,9 @@ public class JournalProgression : MonoBehaviour
                 break;
 
             case "MainFlashlight":
+                //add text to journal
                 journalText.text = journalText.text + System.Environment.NewLine + FlashLightText + System.Environment.NewLine;
+                //disables the pickup
                 MainFlashlight.SetActive(false);
                 break;
 
