@@ -59,4 +59,10 @@ public class CreepManager : MonoBehaviour
             Debug.Log("Already had first encounter");
         }
     }
+
+    public void TurnCreepOff()
+    {
+        creepOn = false;
+        CreepMeter.color = Color.clear;
+    }
 }
