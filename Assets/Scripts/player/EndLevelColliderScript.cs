@@ -8,6 +8,13 @@ public class EndLevelColliderScript : MonoBehaviour
     public Text endText;
     public GameObject gameManager;
 
+    private JournalProgression journalProgression;
+
+    private void Start()
+    {
+        journalProgression = gameManager.GetComponent<JournalProgression>();
+    }
+
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         //first check if you are eligable to end the game then check if you are at the location
@@ -16,7 +23,9 @@ public class EndLevelColliderScript : MonoBehaviour
             if (hit.collider.name == "EndLevelCollider")
             {
                 endText.gameObject.SetActive(true);
-                Debug.Log("end it!");
+
+                //goes to the gameover scene
+                journalProgression.JournalAddText("GameOver");
             }
         }
     }

@@ -31,12 +31,13 @@ public class JournalProgression : MonoBehaviour
     public GameObject SQSpawnPoints;
     public GameObject OFSpawnPoints;
 
-    //lists of enemies
+    //lists and arrays of enemies
     public GameObject[] startEnemies;
     public GameObject[] afterSpawnEnemies;
     public GameObject[] afterMessEnemies;
     public GameObject[] afterSQEnemies;
     public GameObject[] afterOFEnemies;
+    public List<GameObject> activeEnemies;
 
     //more lists, for more dynamic change of enemies
     public GameObject[] dynamicAfterSQEnemies;
@@ -62,6 +63,7 @@ public class JournalProgression : MonoBehaviour
     public int numberOfOQPoints;
 
     private StartLevelOneScript startLevelOneScript;
+    private EndLevelScript endLevelScript;
 
     public bool firstEncounter;
 
@@ -69,6 +71,7 @@ public class JournalProgression : MonoBehaviour
     {
         firstEncounter = false;
         startLevelOneScript = this.GetComponent<StartLevelOneScript>();
+        endLevelScript = this.GetComponent<EndLevelScript>();
 
         //make new lists with the appriopriate count
         //startEnemies = new GameObject[startEnemyCount];
@@ -96,8 +99,9 @@ public class JournalProgression : MonoBehaviour
                 //deactivates the spawn object
                 spawnObject.SetActive(false);
                 //enable some enemies
-                EnableThings(afterSpawnEnemies);
+                EnableThingsFromArray(afterSpawnEnemies);
                 //sets the next object active
+                //random spawn points done in startLevelScript
                 MessObject.SetActive(true);
                 break;
 
@@ -105,11 +109,11 @@ public class JournalProgression : MonoBehaviour
                 //add text to journal
                 journalText.text = journalText.text + System.Environment.NewLine + messText + System.Environment.NewLine;
                 //removes the blockades
-                DisableFromList(messBlockades);
+                DisableFromArray(messBlockades);
                 //enable more enemies
-                EnableThings(afterMessEnemies);
+                EnableThingsFromArray(afterMessEnemies);
                 //disable some enemies
-                DisableFromList(afterSpawnEnemies);
+                DisableFromArray(afterSpawnEnemies);
                 //enable poltergeist enemy
                 //
                 //sets the next intel piece active AND spawns it randomly over a few static locations
@@ -121,11 +125,11 @@ public class JournalProgression : MonoBehaviour
                 //add text to journal
                 journalText.text = journalText.text + System.Environment.NewLine + sleepQuarterText + System.Environment.NewLine;
                 //removes the blockades
-                DisableFromList(sqBlockades);
+                DisableFromArray(sqBlockades);
                 //enable some more enemies
-                EnableThings(afterSQEnemies);
+                EnableThingsFromArray(afterSQEnemies);
                 //disable some enemies??
-                DisableFromList(dynamicAfterSQEnemies);
+                DisableFromArray(dynamicAfterSQEnemies);
                 //sets the next intel active
                 OfficerQObject.SetActive(true);
                 break;
@@ -134,9 +138,9 @@ public class JournalProgression : MonoBehaviour
                 //add text to journal
                 journalText.text = journalText.text + System.Environment.NewLine + officerQuarterText + System.Environment.NewLine;
                 //removes the blockades
-                DisableFromList(ofblockades);
+                DisableFromArray(ofblockades);
                 //new enemies
-                EnableThings(afterOFEnemies);
+                EnableThingsFromArray(afterOFEnemies);
                 //disable some enemies??
                 //
                 //opens up the end level doorway
@@ -152,6 +156,16 @@ public class JournalProgression : MonoBehaviour
 
             case "FirstEnemyEncounter":
                 FirstEncounter();
+                break;
+
+            case "GameOver":
+                //add text to journal
+                //purgatory code??
+                Debug.Log("end it!");
+                //Disable all them active enemies
+                DisableFromList(activeEnemies);
+                //start the countdown to the gameover scene
+                StartCoroutine(GameOverRoutine());
                 break;
 
             default:
@@ -180,21 +194,56 @@ public class JournalProgression : MonoBehaviour
         }
     }
 
-    //enables from gameobject list, can be reused for other purposes as well
-    public void EnableThings(GameObject[] things)
+    //enables from gameobject array, can be reused for other purposes as well
+    public void EnableThingsFromArray(GameObject[] things)
     {
         foreach(GameObject thing in things)
+        {
+            thing.SetActive(true);
+            //add to active enemy list
+            activeEnemies.Add(thing);
+        }
+    }
+
+    //disables things, can be reused 
+    public void DisableFromArray(GameObject[] things)
+    {
+        foreach(GameObject thing in things)
+        {
+            thing.SetActive(false);
+            //remove from active enemy list
+            activeEnemies.Remove(thing);
+        }
+    }
+
+    public void DisableFromList(List<GameObject> things)
+    {
+        foreach (GameObject thing in things)
+        {
+            thing.SetActive(false);
+        }
+    }
+    public void EnableThingsFromList(List<GameObject> things)
+    {
+        foreach (GameObject thing in things)
         {
             thing.SetActive(true);
         }
     }
 
-    //disables things, can be reused 
-    public void DisableFromList(GameObject[] things)
+    IEnumerator GameOverRoutine()
     {
-        foreach(GameObject thing in things)
-        {
-            thing.SetActive(false);
-        }
+        //Print the time of when the function is first called.
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(5);
+
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+
+        //switches to the gameover screen, change this to create a purgatory!! so NOT a scene rest BUT a rearranging of it.
+        activeEnemies.Clear();
+        endLevelScript.GameOver("GameOver");
     }
 }
