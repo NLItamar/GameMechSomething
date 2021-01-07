@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Patrol : MonoBehaviour
 {
+    //change this to gameobject list and set order on editor
     public Transform[] points;
     private int destPoint = 0;
     private NavMeshAgent agent;
