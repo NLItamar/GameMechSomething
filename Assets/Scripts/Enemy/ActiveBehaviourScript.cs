@@ -168,8 +168,6 @@ public class ActiveBehaviourScript : MonoBehaviour
         //if the enemy is on route to the player's last known location, check if it arrives(nearly there) and set a countdown to respawn
         if(isJumpyEnemy && agent.remainingDistance <= 0.5f && goingToLastKnowLocation)
         {
-            Debug.Log("starting countdown!");
-
             StartCoroutine(ExecuteAfterTime(5));
         }
 
@@ -248,7 +246,8 @@ public class ActiveBehaviourScript : MonoBehaviour
         {
             yield break;
         }
-
+        //so this wont be displayed in console over and over
+        Debug.Log("starting countdown!");
         isCoroutineExecuting = true;
 
         yield return new WaitForSeconds(time);
@@ -257,5 +256,11 @@ public class ActiveBehaviourScript : MonoBehaviour
         SpawnOtherSpot();
 
         isCoroutineExecuting = false;
+    }
+
+    //hopefully clears the creeping when an enemy is close and disabled
+    private void OnDisable()
+    {
+        creepManager.creepOn = false;
     }
 }

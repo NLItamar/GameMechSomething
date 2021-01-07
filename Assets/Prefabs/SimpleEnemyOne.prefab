@@ -4822,6 +4822,7 @@ GameObject:
   - component: {fileID: 5828468180476139654}
   - component: {fileID: 3413448896827074595}
   - component: {fileID: 8536877753633569033}
+  - component: {fileID: 4069690842870967874}
   m_Layer: 11
   m_Name: SimpleEnemyOne
   m_TagString: Enemy
@@ -5106,3 +5107,17 @@ MonoBehaviour:
   isJumpyEnemy: 0
   isNormalPatrolEnemy: 0
   isJumpyParticleEnabled: 0
+  spawnNumber: 0
+  spawnPoints: {fileID: 0}
+--- !u!114 &4069690842870967874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828468180476139663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a159e12d9c66fa48bdfe2249be8f162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

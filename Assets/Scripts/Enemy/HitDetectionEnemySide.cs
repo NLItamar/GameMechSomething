@@ -1,17 +1,14 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class HitDetection : MonoBehaviour
+public class HitDetectionEnemySide : MonoBehaviour
 {
     public GameObject gameManager;
-    private Rigidbody rgBody;
 
     private void Awake()
     {
-        rgBody = this.gameObject.GetComponent<Rigidbody>();
-        rgBody.sleepThreshold = 0.0f;
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
     }
 
     /*
@@ -26,11 +23,20 @@ public class HitDetection : MonoBehaviour
     }
     */
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.CompareTag("Player"))
+        {
+            Debug.Log("hit player from enemy side, OnControllerColliderHit");
+            //game over
+            gameManager.GetComponent<EndLevelScript>().GameOver("GameOver");
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Enemy"))
+        if (collision.collider.CompareTag("Player"))
         {
-            Debug.Log("hit enemy from player side, OnCollisionEnter");
+            Debug.Log("hit player from enemy side, OnCollisionEnter");
             //game over
             gameManager.GetComponent<EndLevelScript>().GameOver("GameOver");
         }
