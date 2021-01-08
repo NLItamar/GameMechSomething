@@ -735,6 +735,7 @@ MonoBehaviour:
   - {fileID: 919401839}
   - {fileID: 1199979584}
   afterOFEnemies: []
+  activeEnemies: []
   dynamicAfterSQEnemies:
   - {fileID: 699151698}
   - {fileID: 1797436712}
@@ -842,7 +843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creepOn: 0
   Player: {fileID: 818222546}
-  CreepMeter: {fileID: 0}
+  CreepMeter: {fileID: 1489105895}
   JournalImage: {fileID: 924645663}
 --- !u!114 &12115382
 MonoBehaviour:

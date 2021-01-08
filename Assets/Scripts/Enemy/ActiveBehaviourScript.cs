@@ -261,6 +261,6 @@ public class ActiveBehaviourScript : MonoBehaviour
     //hopefully clears the creeping when an enemy is close and disabled
     private void OnDisable()
     {
-        creepManager.creepOn = false;
+        creepManager.TurnCreepOff();
     }
 }
