@@ -51,8 +51,8 @@ public class ActiveBehaviourScript : MonoBehaviour
     public int spawnNumber;
     public GameObject spawnPoints;
 
-    public int lerpModifierRay;
-    public int lerpModifyNormal;
+    private float lerpModifierRay;
+    private float lerpModifyNormal;
 
     // Start is called before the first frame update
     void Start()
@@ -108,6 +108,9 @@ public class ActiveBehaviourScript : MonoBehaviour
             distanceMeasureToDisableParticles = enemyValues.enemyNormalParticlesDistance;
             followDistance = enemyValues.followNormalDistance;
         }
+
+        lerpModifyNormal = enemyValues.normalLerpModifier;
+        lerpModifierRay = enemyValues.rayLerpModifier;
     }
 
     // Update is called once per frame
@@ -125,17 +128,17 @@ public class ActiveBehaviourScript : MonoBehaviour
             DisableParticleStuffs();
         }
 
+        //follow distance in the raycast is in this case the length of the ray in which we will check for things
         Vector3 raycastDirection = (Player.transform.position - this.transform.position).normalized;
         if(isActived && Physics.Raycast(this.transform.position, raycastDirection, out hit, followDistance))
         {
             Debug.DrawRay(this.transform.position, raycastDirection, Color.green);
             if(hit.collider.CompareTag("Player"))
             {
-                
+                creepDetection.shouldICheck = false;
                 //enable the shizzles again
                 if(!isJumpyParticleEnabled && isJumpyEnemy)
                 {
-                    creepDetection.shouldIDoubleCheck = false;
                     EnableParticleStuffs();
                     //does the red screen thingy
                     creepManager.Creeping(this.gameObject.transform, creepDetection.creepingDistanceMeasure, isJumpyEnemy, lerpModifierRay);
@@ -154,7 +157,6 @@ public class ActiveBehaviourScript : MonoBehaviour
             else
             {
                 enteredRaycast = false;
-                creepDetection.shouldIDoubleCheck = true;
             }
         }
 
@@ -180,6 +182,13 @@ public class ActiveBehaviourScript : MonoBehaviour
         if(!goingToLastKnowLocation && isFollowingPlayer && isCoroutineExecuting)
         {
             StopCoroutine("ExecuteAfterTime");
+        }
+
+        else
+        {
+            isFollowingPlayer = false;
+            enteredRaycast = false;
+            goingToLastKnowLocation = false;
         }
     }
 

@@ -11,8 +11,7 @@ public class CreepDetection : MonoBehaviour
 
     [HideInInspector] public float creepingDistanceMeasure;
 
-    private bool shouldICheck;
-    [HideInInspector] public bool shouldIDoubleCheck;
+    [HideInInspector] public bool shouldICheck;
     private bool firstEncounter;
     private bool isEnemyActive;
     private CreepManager creepManager;
@@ -20,7 +19,7 @@ public class CreepDetection : MonoBehaviour
     private ActiveBehaviourScript behaviourScript;
     private JournalProgression journalProgression;
 
-    public int lerpModifierNormal;
+    private float lerpModifierNormal;
 
     private void Start()
     {
@@ -35,7 +34,6 @@ public class CreepDetection : MonoBehaviour
 
         //should I check if the player is in range
         shouldICheck = true;
-        shouldIDoubleCheck = true;
         firstEncounter = journalProgression.firstEncounter;
 
         isEnemyActive = this.gameObject.GetComponent<ActiveBehaviourScript>().isJumpyParticleEnabled;
@@ -49,23 +47,21 @@ public class CreepDetection : MonoBehaviour
         {
             creepingDistanceMeasure = enemyValues.creepNormalDistance;
         }
+        lerpModifierNormal = enemyValues.normalLerpModifier;
     }
 
     void Update()
     {
-        //check if the first encounter has been done, else it'll give the journal add multiple times
-        firstEncounter = journalProgression.firstEncounter;
-
         //is the enemy active and doing it's shizzles, we know this if it has it's particles enabled and running
         //because the enemies disable this at certain points YET DO NOT disable the game object itself since they are still there
-        isEnemyActive = this.gameObject.GetComponent<ActiveBehaviourScript>().isJumpyParticleEnabled;
+        isEnemyActive = behaviourScript.isJumpyParticleEnabled;
 
         //distance between the player and this enemy
         float dist = Vector3.Distance(Player.transform.position, this.transform.position);
 
         //clusterfuck that is the creeping of the screen with enemies closeby(gonna do this different later on!!! and moving it to CreepManager!!!)
         //puts the ui image to reddddddd so you cant see shit
-        if (dist <= creepingDistanceMeasure && creepManager.creepOn == false && shouldICheck && shouldIDoubleCheck)
+        if (dist <= creepingDistanceMeasure && creepManager.creepOn == false && shouldICheck)
         {
             //does the colour thingy
             creepManager.Creeping(this.transform, creepingDistanceMeasure, isEnemyActive, lerpModifierNormal);
@@ -74,7 +70,7 @@ public class CreepDetection : MonoBehaviour
             if(firstEncounter == false)
             {
                 creepManager.FirstEncounter();
-                firstEncounter = true;
+                firstEncounter = journalProgression.firstEncounter;
             }
             //so it wont check again
             this.shouldICheck = false;
@@ -83,12 +79,7 @@ public class CreepDetection : MonoBehaviour
         //puts the ui image back to nothing, see through
         else if(dist > creepingDistanceMeasure && creepManager.creepOn && shouldICheck == false)
         {
-            creepManager.creepOn = false;
-            //simple debug to show that the creeping is off now
-            Debug.Log("creep is off");
-
-            //fully see through no filter
-            CreepMeter.color = new Color(0, 0, 0, 0);
+            creepManager.TurnCreepOff();
 
             //gotta check again ehh
             shouldICheck = true;

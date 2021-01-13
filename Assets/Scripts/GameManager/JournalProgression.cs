@@ -192,6 +192,10 @@ public class JournalProgression : MonoBehaviour
             journalText.text = journalText.text + System.Environment.NewLine + firstEnemyText + System.Environment.NewLine;
             firstEncounter = true;
         }
+        else
+        {
+            Debug.Log("Already had first encounter, but what about second encounter?");
+        }
     }
 
     //enables from gameobject array, can be reused for other purposes as well

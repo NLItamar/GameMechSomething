@@ -791,6 +791,8 @@ MonoBehaviour:
   speedJumpyFollow: 0
   speedNormalFollow: 0
   speedNormalPatrol: 0
+  normalLerpModifier: 1.8
+  rayLerpModifier: 1
 --- !u!114 &12115378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -848,7 +850,6 @@ MonoBehaviour:
   Player: {fileID: 818222546}
   CreepMeter: {fileID: 1489105895}
   JournalImage: {fileID: 924645663}
-  lerpMultiplier: 1
 --- !u!114 &12115382
 MonoBehaviour:
   m_ObjectHideFlags: 0

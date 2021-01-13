@@ -16,7 +16,7 @@ public class CreepManager : MonoBehaviour
 
     private JournalProgression journalProgression;
 
-    public int lerpMultiplier;
+    private float lerpMultiplier;
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +24,9 @@ public class CreepManager : MonoBehaviour
         creepOn = false;
         CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
         journalProgression = this.GetComponent<JournalProgression>();
-
-        lerpMultiplier = 1;
     }
 
-    public void Creeping(Transform enemy, float distanceMeasure, bool isEnemyOnline, int lerpModify)
+    public void Creeping(Transform enemy, float distanceMeasure, bool isEnemyOnline, float lerpModify)
     {
         Debug.Log(isEnemyOnline);
 
@@ -36,11 +34,15 @@ public class CreepManager : MonoBehaviour
 
         if(isEnemyOnline)
         {
+            this.enemy = enemy;
+            this.distanceMeasure = distanceMeasure / lerpModify;
+            Debug.Log("distanceMeasure: " + distanceMeasure + " " +
+                "lerpModifier: " + lerpModify +
+                "creep starts at distance: " + this.distanceMeasure
+                );
+
             creepOn = true;
             Debug.Log("creep is on");
-
-            this.enemy = enemy;
-            this.distanceMeasure = distanceMeasure;
         }
     }
 
@@ -48,8 +50,8 @@ public class CreepManager : MonoBehaviour
     {
         if(creepOn)
         {
-            CreepMeter.color = Color.Lerp(Color.red, Color.clear, Vector3.Distance(Player.transform.position, enemy.position) / (distanceMeasure / lerpMultiplier));
-            Debug.Log(Vector3.Distance(Player.transform.position, enemy.position));
+            CreepMeter.color = Color.Lerp(Color.red, Color.clear, Vector3.Distance(Player.transform.position, enemy.position) / distanceMeasure);
+            //Debug.Log(Vector3.Distance(Player.transform.position, enemy.position));
         }
     }
 
@@ -71,12 +73,13 @@ public class CreepManager : MonoBehaviour
     {
         if(CreepMeter != null)
         {
+            Debug.Log("Creep is now off");
             creepOn = false;
             CreepMeter.color = Color.clear;
         }
         else
         {
-            Debug.LogError("creepMeter image is NULL, can ignore for now");
+            Debug.LogWarning("creepMeter image is NULL, can ignore for now");
         }
     }
 }

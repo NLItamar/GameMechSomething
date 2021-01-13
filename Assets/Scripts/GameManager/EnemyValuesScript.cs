@@ -18,6 +18,9 @@ public class EnemyValuesScript : MonoBehaviour
 
     public float speedNormalPatrol;
 
+    public float normalLerpModifier;
+    public float rayLerpModifier;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +45,13 @@ public class EnemyValuesScript : MonoBehaviour
             followNormalDistance + " " +
 
             "followJumpyDistance:  " +
-            followJumpyDistance
+            followJumpyDistance + " " +
+
+            "normalLerpModifier: " +
+            normalLerpModifier + " " +
+
+            "rayLerpModifier: " +
+            rayLerpModifier
             );
     }
 }
