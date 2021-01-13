@@ -16,6 +16,7 @@ TagManager:
   - Crosshair
   - LightOne
   - LightTwo
+  - SimpleCollider
   layers:
   - Default
   - TransparentFX
@@ -33,7 +34,7 @@ TagManager:
   - EnemyCanThrough
   - Player
   - Particles
-  - 
+  - PlayerIgnore
   - 
   - 
   - 

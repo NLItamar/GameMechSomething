@@ -12,12 +12,15 @@ public class CreepDetection : MonoBehaviour
     [HideInInspector] public float creepingDistanceMeasure;
 
     private bool shouldICheck;
+    [HideInInspector] public bool shouldIDoubleCheck;
     private bool firstEncounter;
     private bool isEnemyActive;
     private CreepManager creepManager;
     private EnemyValuesScript enemyValues;
     private ActiveBehaviourScript behaviourScript;
     private JournalProgression journalProgression;
+
+    public int lerpModifierNormal;
 
     private void Start()
     {
@@ -32,6 +35,7 @@ public class CreepDetection : MonoBehaviour
 
         //should I check if the player is in range
         shouldICheck = true;
+        shouldIDoubleCheck = true;
         firstEncounter = journalProgression.firstEncounter;
 
         isEnemyActive = this.gameObject.GetComponent<ActiveBehaviourScript>().isJumpyParticleEnabled;
@@ -61,10 +65,10 @@ public class CreepDetection : MonoBehaviour
 
         //clusterfuck that is the creeping of the screen with enemies closeby(gonna do this different later on!!! and moving it to CreepManager!!!)
         //puts the ui image to reddddddd so you cant see shit
-        if (dist <= creepingDistanceMeasure && creepManager.creepOn == false && shouldICheck)
+        if (dist <= creepingDistanceMeasure && creepManager.creepOn == false && shouldICheck && shouldIDoubleCheck)
         {
             //does the colour thingy
-            creepManager.Creeping(this.transform, creepingDistanceMeasure, isEnemyActive);
+            creepManager.Creeping(this.transform, creepingDistanceMeasure, isEnemyActive, lerpModifierNormal);
 
             //depending if you are in range of the first enemy, you'll get notified in the journal for it. BUT it only happens once
             if(firstEncounter == false)

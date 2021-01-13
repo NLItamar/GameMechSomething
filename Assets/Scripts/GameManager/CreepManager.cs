@@ -16,17 +16,23 @@ public class CreepManager : MonoBehaviour
 
     private JournalProgression journalProgression;
 
+    public int lerpMultiplier;
+
     // Start is called before the first frame update
     void Start()
     {
         creepOn = false;
         CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
         journalProgression = this.GetComponent<JournalProgression>();
+
+        lerpMultiplier = 1;
     }
 
-    public void Creeping(Transform enemy, float distanceMeasure, bool isEnemyOnline)
+    public void Creeping(Transform enemy, float distanceMeasure, bool isEnemyOnline, int lerpModify)
     {
         Debug.Log(isEnemyOnline);
+
+        lerpMultiplier = lerpModify;
 
         if(isEnemyOnline)
         {
@@ -42,7 +48,8 @@ public class CreepManager : MonoBehaviour
     {
         if(creepOn)
         {
-            CreepMeter.color = Color.Lerp(Color.red, Color.clear, Vector3.Distance(Player.transform.position, enemy.position) / distanceMeasure);
+            CreepMeter.color = Color.Lerp(Color.red, Color.clear, Vector3.Distance(Player.transform.position, enemy.position) / (distanceMeasure / lerpMultiplier));
+            Debug.Log(Vector3.Distance(Player.transform.position, enemy.position));
         }
     }
 
@@ -62,7 +69,14 @@ public class CreepManager : MonoBehaviour
 
     public void TurnCreepOff()
     {
-        creepOn = false;
-        CreepMeter.color = Color.clear;
+        if(CreepMeter != null)
+        {
+            creepOn = false;
+            CreepMeter.color = Color.clear;
+        }
+        else
+        {
+            Debug.LogError("creepMeter image is NULL, can ignore for now");
+        }
     }
 }

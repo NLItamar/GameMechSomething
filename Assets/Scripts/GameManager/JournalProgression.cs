@@ -16,7 +16,7 @@ public class JournalProgression : MonoBehaviour
     public string spawnText, messText, sleepQuarterText, officerQuarterText, FlashLightText, firstEnemyText;
 
     //blockades
-    public GameObject spawnObject;
+    public GameObject[] spawnObjects;
     public GameObject[] messBlockades;
     public GameObject[] sqBlockades;
     public GameObject[] ofblockades;
@@ -97,7 +97,7 @@ public class JournalProgression : MonoBehaviour
                 //add the text in the journal
                 journalText.text = journalText.text + System.Environment.NewLine + spawnText + System.Environment.NewLine;
                 //deactivates the spawn object
-                spawnObject.SetActive(false);
+                DisableFromArray(spawnObjects);
                 //enable some enemies
                 EnableThingsFromArray(afterSpawnEnemies);
                 //sets the next object active

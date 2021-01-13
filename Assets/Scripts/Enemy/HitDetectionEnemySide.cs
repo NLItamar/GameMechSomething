@@ -29,7 +29,7 @@ public class HitDetectionEnemySide : MonoBehaviour
         {
             Debug.Log("hit player from enemy side, OnControllerColliderHit");
             //game over
-            gameManager.GetComponent<EndLevelScript>().GameOver("GameOver");
+            EndIt();
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -38,7 +38,12 @@ public class HitDetectionEnemySide : MonoBehaviour
         {
             Debug.Log("hit player from enemy side, OnCollisionEnter");
             //game over
-            gameManager.GetComponent<EndLevelScript>().GameOver("GameOver");
+            EndIt();
         }
+    }
+
+    private void EndIt()
+    {
+        gameManager.GetComponent<EndLevelScript>().GameOver("GameOver");
     }
 }

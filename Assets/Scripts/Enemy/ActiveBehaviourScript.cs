@@ -51,6 +51,9 @@ public class ActiveBehaviourScript : MonoBehaviour
     public int spawnNumber;
     public GameObject spawnPoints;
 
+    public int lerpModifierRay;
+    public int lerpModifyNormal;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -128,12 +131,14 @@ public class ActiveBehaviourScript : MonoBehaviour
             Debug.DrawRay(this.transform.position, raycastDirection, Color.green);
             if(hit.collider.CompareTag("Player"))
             {
+                
                 //enable the shizzles again
                 if(!isJumpyParticleEnabled && isJumpyEnemy)
                 {
+                    creepDetection.shouldIDoubleCheck = false;
                     EnableParticleStuffs();
                     //does the red screen thingy
-                    creepManager.Creeping(this.gameObject.transform, creepDetection.creepingDistanceMeasure, isJumpyEnemy);
+                    creepManager.Creeping(this.gameObject.transform, creepDetection.creepingDistanceMeasure, isJumpyEnemy, lerpModifierRay);
                 }
 
                 //if the player is in sight and for the first time in sight it'll set the values true for following the player and a lil sauron ref
@@ -149,6 +154,7 @@ public class ActiveBehaviourScript : MonoBehaviour
             else
             {
                 enteredRaycast = false;
+                creepDetection.shouldIDoubleCheck = true;
             }
         }
 

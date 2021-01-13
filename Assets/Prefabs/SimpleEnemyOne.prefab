@@ -5091,6 +5091,7 @@ MonoBehaviour:
   CreepMeter: {fileID: 0}
   gameManager: {fileID: 0}
   creepingDistanceMeasure: 0
+  lerpModifierNormal: 2
 --- !u!114 &8536877753633569033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5109,6 +5110,8 @@ MonoBehaviour:
   isJumpyParticleEnabled: 0
   spawnNumber: 0
   spawnPoints: {fileID: 0}
+  lerpModifierRay: 1
+  lerpModifyNormal: 2
 --- !u!114 &4069690842870967874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5121,3 +5124,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a159e12d9c66fa48bdfe2249be8f162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}

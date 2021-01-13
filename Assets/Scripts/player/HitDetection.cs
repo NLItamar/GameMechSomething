@@ -14,17 +14,15 @@ public class HitDetection : MonoBehaviour
         rgBody.sleepThreshold = 0.0f;
     }
 
-    /*
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(hit.collider.tag == "Enemy")
+        if(hit.collider.CompareTag("Enemy"))
         {
-            Debug.Log("hit enemy");
+            Debug.Log("hit enemy from player side, oncollisionHit");
             //game over
             gameManager.GetComponent<EndLevelScript>().GameOver("GameOver");
         }
     }
-    */
 
     private void OnCollisionEnter(Collision collision)
     {
