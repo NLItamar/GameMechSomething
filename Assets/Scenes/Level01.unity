@@ -692,9 +692,9 @@ MonoBehaviour:
   journalText: {fileID: 1725410460}
   endText: {fileID: 1410305664}
   spawnText: 'It reads: "We are watching you, you will be consumed". There is something
-    more written here, it looks like it''s from the mess hall.'
+    more written here, it looks like it''s from the mess hall. '
   messText: 'It reads: "One of your own betrayed you". What does this mean? Maybe
-    I''ll find answers in the sleeping quarters.'
+    I''ll find answers in one sleeping quarters.'
   sleepQuarterText: 'It reads: "Your leaders have abandoned you". Can it be more
     vague? Perhaps I''ll find answers in the officer''s quarters.'
   officerQuarterText: 'It reads: "YOU SEALED YOUR FATE". I need to find the way out.
