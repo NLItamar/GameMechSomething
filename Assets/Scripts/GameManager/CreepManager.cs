@@ -9,7 +9,6 @@ public class CreepManager : MonoBehaviour
 
     public GameObject Player;
     public Image CreepMeter;
-    public Image JournalImage;
 
     private Transform enemy;
     private float distanceMeasure;
@@ -22,14 +21,13 @@ public class CreepManager : MonoBehaviour
     void Start()
     {
         creepOn = false;
-        CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
         journalProgression = this.GetComponent<JournalProgression>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+        CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
     }
 
     public void Creeping(Transform enemy, float distanceMeasure, bool isEnemyOnline, float lerpModify)
     {
-        Debug.Log(isEnemyOnline);
-
         lerpMultiplier = lerpModify;
 
         if(isEnemyOnline)
@@ -37,7 +35,7 @@ public class CreepManager : MonoBehaviour
             this.enemy = enemy;
             this.distanceMeasure = distanceMeasure / lerpModify;
             Debug.Log("distanceMeasure: " + distanceMeasure + " " +
-                "lerpModifier: " + lerpModify +
+                "lerpModifier: " + lerpModify + " " +
                 "creep starts at distance: " + this.distanceMeasure
                 );
 
@@ -57,29 +55,28 @@ public class CreepManager : MonoBehaviour
 
     public void FirstEncounter()
     {
-        //double check
-        if(!journalProgression.firstEncounter)
-        {
-            this.GetComponent<JournalProgression>().JournalAddText("FirstEnemyEncounter");
-            JournalImage.color = Color.green;
-        }
-        else
-        {
-            Debug.Log("Already had first encounter");
-        }
+        journalProgression.JournalAddText("FirstEnemyEncounter");
     }
 
     public void TurnCreepOff()
     {
-        if(CreepMeter != null)
+        if(CreepMeter != null && creepOn)
         {
-            Debug.Log("Creep is now off");
             creepOn = false;
             CreepMeter.color = Color.clear;
+            Debug.Log("Creep is now off");
         }
+
+        if(CreepMeter == null)
+        {
+            //something about closing the game whilst in editor
+            Debug.LogWarning("creepMeter image is NULL, can ignore for now");
+            CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
+        }
+
         else
         {
-            Debug.LogWarning("creepMeter image is NULL, can ignore for now");
+            Debug.Log("Creep off is called but the if's are not passed");
         }
     }
 }

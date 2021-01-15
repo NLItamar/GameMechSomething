@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class CreepDetection : MonoBehaviour
 {
     [SerializeField] private GameObject Player;
-    [SerializeField] private Image CreepMeter;
     [SerializeField] private GameObject gameManager;
 
     [HideInInspector] public float creepingDistanceMeasure;
@@ -19,14 +18,13 @@ public class CreepDetection : MonoBehaviour
     private ActiveBehaviourScript behaviourScript;
     private JournalProgression journalProgression;
 
-    private float lerpModifierNormal;
+    private float lerpModifier;
 
     private void Start()
     {
         //refs
         Player = GameObject.FindGameObjectWithTag("Player");
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
-        CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
         creepManager = gameManager.GetComponent<CreepManager>();
         enemyValues = gameManager.GetComponent<EnemyValuesScript>();
         behaviourScript = this.gameObject.GetComponent<ActiveBehaviourScript>();
@@ -47,7 +45,7 @@ public class CreepDetection : MonoBehaviour
         {
             creepingDistanceMeasure = enemyValues.creepNormalDistance;
         }
-        lerpModifierNormal = enemyValues.normalLerpModifier;
+        lerpModifier = enemyValues.normalLerpModifier;
     }
 
     void Update()
@@ -64,10 +62,10 @@ public class CreepDetection : MonoBehaviour
         if (dist <= creepingDistanceMeasure && creepManager.creepOn == false && shouldICheck)
         {
             //does the colour thingy
-            creepManager.Creeping(this.transform, creepingDistanceMeasure, isEnemyActive, lerpModifierNormal);
+            creepManager.Creeping(this.transform, creepingDistanceMeasure, isEnemyActive, lerpModifier);
 
             //depending if you are in range of the first enemy, you'll get notified in the journal for it. BUT it only happens once
-            if(firstEncounter == false)
+            if(!firstEncounter)
             {
                 creepManager.FirstEncounter();
                 firstEncounter = journalProgression.firstEncounter;
@@ -77,12 +75,13 @@ public class CreepDetection : MonoBehaviour
         }
 
         //puts the ui image back to nothing, see through
-        else if(dist > creepingDistanceMeasure && creepManager.creepOn && shouldICheck == false)
+        else if(dist > creepingDistanceMeasure && !shouldICheck)
         {
             creepManager.TurnCreepOff();
 
             //gotta check again ehh
             shouldICheck = true;
+            behaviourScript.enteredRaycast = false;
         }
     }
 }

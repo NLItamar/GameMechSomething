@@ -37,7 +37,7 @@ public class ActiveBehaviourScript : MonoBehaviour
 
     RaycastHit hit;
 
-    private bool enteredRaycast;
+    [HideInInspector] public bool enteredRaycast;
 
     private NavMeshAgent agent;
 
@@ -133,31 +133,42 @@ public class ActiveBehaviourScript : MonoBehaviour
         if(isActived && Physics.Raycast(this.transform.position, raycastDirection, out hit, followDistance))
         {
             Debug.DrawRay(this.transform.position, raycastDirection, Color.green);
+
             if(hit.collider.CompareTag("Player"))
             {
+                //so normal creep detection wont trigger
                 creepDetection.shouldICheck = false;
                 //enable the shizzles again
                 if(!isJumpyParticleEnabled && isJumpyEnemy)
                 {
                     EnableParticleStuffs();
-                    //does the red screen thingy
-                    creepManager.Creeping(this.gameObject.transform, creepDetection.creepingDistanceMeasure, isJumpyEnemy, lerpModifierRay);
                 }
 
                 //if the player is in sight and for the first time in sight it'll set the values true for following the player and a lil sauron ref
                 if(!enteredRaycast)
                 {
-                    //follow player code
-                    isFollowingPlayer = true;
+                    creepManager.TurnCreepOff();
+                    //follow player code and creeping
                     Debug.Log("I SEEEEE YOUUUUU");
+                    //does the red screen thingy
+                    creepManager.Creeping(this.gameObject.transform, creepDetection.creepingDistanceMeasure, isActived, lerpModifierRay);
+                    //sets the bools
+                    isFollowingPlayer = true;
                     enteredRaycast = true;
                     goingToLastKnowLocation = false;
                 }
             }
+
+            /*
             else
             {
                 enteredRaycast = false;
+                if(creepManager.creepOn)
+                {
+                    creepManager.TurnCreepOff();
+                }
             }
+            */
         }
 
         if(isFollowingPlayer && enteredRaycast)
@@ -184,12 +195,14 @@ public class ActiveBehaviourScript : MonoBehaviour
             StopCoroutine("ExecuteAfterTime");
         }
 
+        /*
         else
         {
             isFollowingPlayer = false;
             enteredRaycast = false;
             goingToLastKnowLocation = false;
         }
+        */
     }
 
     void DisableParticleStuffs()
@@ -277,5 +290,10 @@ public class ActiveBehaviourScript : MonoBehaviour
     private void OnDisable()
     {
         creepManager.TurnCreepOff();
+    }
+
+    private void OnEnable()
+    {
+        isActived = true;
     }
 }

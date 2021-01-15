@@ -11,6 +11,8 @@ public class JournalProgression : MonoBehaviour
     public Text journalText;
     public Text endText;
 
+    public Image JournalImage;
+
     private string caseSwitchString;
 
     public string spawnText, messText, sleepQuarterText, officerQuarterText, FlashLightText, firstEnemyText;
@@ -190,6 +192,7 @@ public class JournalProgression : MonoBehaviour
         if(!firstEncounter)
         {
             journalText.text = journalText.text + System.Environment.NewLine + firstEnemyText + System.Environment.NewLine;
+            JournalImage.color = Color.green;
             firstEncounter = true;
         }
         else

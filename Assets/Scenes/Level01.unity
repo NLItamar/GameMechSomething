@@ -691,6 +691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   journalText: {fileID: 1725410460}
   endText: {fileID: 1410305664}
+  JournalImage: {fileID: 924645663}
   spawnText: 'It reads: "We are watching you, you will be consumed". There is something
     more written here, it looks like it''s from the mess hall. '
   messText: 'It reads: "One of your own betrayed you". What does this mean? Maybe
@@ -849,7 +850,6 @@ MonoBehaviour:
   creepOn: 0
   Player: {fileID: 818222546}
   CreepMeter: {fileID: 1489105895}
-  JournalImage: {fileID: 924645663}
 --- !u!114 &12115382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10721,7 +10721,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Press Q to open your journal
+  m_Text: 'Press Q to open your journal
+
+    Find the yellow things!'
 --- !u!222 &454966784
 CanvasRenderer:
   m_ObjectHideFlags: 0
