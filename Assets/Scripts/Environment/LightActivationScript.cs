@@ -22,6 +22,10 @@ public class LightActivationScript : MonoBehaviour
     public float normalIntensityTwo;
     public int maxCheckTwo;
 
+    //intensity when the player approaches first
+    public float jumpyLightIntensity;
+    [HideInInspector] public bool firstEncounter;
+
     //private LightBehaviourStaticScript lightBehaviourStaticScript;
 
     private void Start()
@@ -30,6 +34,7 @@ public class LightActivationScript : MonoBehaviour
         lights = transform.Find("Lights").gameObject;
 
         //lightBehaviourStaticScript = this.gameObject.GetComponentInChildren<LightBehaviourStaticScript>();
+        firstEncounter = false;
     }
 
     // Update is called once per frame
@@ -46,11 +51,13 @@ public class LightActivationScript : MonoBehaviour
         if (Vector3.Distance(this.transform.position, player.transform.position) <= jumpyDistance && lights.activeInHierarchy == false)
         {
             lights.SetActive(true);
+            firstEncounter = true;
         }
 
         else if (Vector3.Distance(this.transform.position, player.transform.position) > jumpyDistance && lights.activeInHierarchy == true)
         {
             lights.SetActive(false);
+            firstEncounter = false;
         }
     }
 }

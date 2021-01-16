@@ -14,6 +14,8 @@ public class LightBehaviourStaticScript : MonoBehaviour
     [SerializeField] private float normalIntensity;
 
     [SerializeField] private float maxCheck;
+    [SerializeField] private float firstEncounterIntensity;
+    [HideInInspector] public bool firstEncounter;
     private float randomTime;
     private float randomTimeChecker;
 
@@ -57,6 +59,8 @@ public class LightBehaviourStaticScript : MonoBehaviour
             normalIntensity = lightActivationScript.normalIntensityTwo;
             maxCheck = lightActivationScript.maxCheckTwo;
         }
+        firstEncounterIntensity = lightActivationScript.jumpyLightIntensity;
+        firstEncounter = lightActivationScript.firstEncounter;
 
         givenWarning = false;
     }
@@ -108,7 +112,7 @@ public class LightBehaviourStaticScript : MonoBehaviour
         isOn = false;
 
         //turns the light back on after x amount of time
-        Invoke("FlickerBackOn", 0.2f);
+        Invoke(nameof(FlickerBackOn), 0.2f);
     }
 
     public void FlickerBackOn()
@@ -122,7 +126,7 @@ public class LightBehaviourStaticScript : MonoBehaviour
         m_Material.SetColor("_EmmisionColor", Color.white * 1f);
 
         //puts the light back to normal
-        Invoke("LightNormal", 0.2f);
+        Invoke(nameof(LightNormal), 0.2f);
     }
 
     public void LightNormal()
@@ -139,5 +143,23 @@ public class LightBehaviourStaticScript : MonoBehaviour
     {
         myLight.intensity = 0f;
         m_Material.DisableKeyword("_EMISSION");
+    }
+
+    private void OnEnable()
+    {
+        myLight.intensity = firstEncounterIntensity;
+        firstEncounter = true;
+
+        //turns the emission on the material BACK ON
+        m_Material.EnableKeyword("_EMISSION");
+        m_Material.SetColor("_EmmisionColor", Color.white * 1f);
+
+        //puts the light back to normal
+        Invoke(nameof(LightNormal), 0.2f);
+    }
+
+    private void OnDisable()
+    {
+        firstEncounter = false;
     }
 }

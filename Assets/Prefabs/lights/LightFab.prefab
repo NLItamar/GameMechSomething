@@ -58,6 +58,8 @@ MonoBehaviour:
   maxIntensityTwo: 0.9
   normalIntensityTwo: 0.4
   maxCheckTwo: 70
+  jumpyLightIntensity: 2
+  firstEncounter: 0
 --- !u!1 &730229410690780629
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +332,8 @@ MonoBehaviour:
   maxIntensity: 0.9
   normalIntensity: 0.4
   maxCheck: 70
+  firstEncounterIntensity: 0
+  firstEncounter: 0
 --- !u!1 &730229411392753729
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,6 +606,8 @@ MonoBehaviour:
   maxIntensity: 0.9
   normalIntensity: 0.4
   maxCheck: 40
+  firstEncounterIntensity: 0
+  firstEncounter: 0
 --- !u!1 &8996530257254822852
 GameObject:
   m_ObjectHideFlags: 0
