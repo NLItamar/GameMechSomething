@@ -147,6 +147,7 @@ public class LightBehaviourStaticScript : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("light in " + this.transform.parent.parent.parent.name + " just went heckin nuts!!");
         myLight.intensity = firstEncounterIntensity;
         firstEncounter = true;
 
@@ -154,8 +155,8 @@ public class LightBehaviourStaticScript : MonoBehaviour
         m_Material.EnableKeyword("_EMISSION");
         m_Material.SetColor("_EmmisionColor", Color.white * 1f);
 
-        //puts the light back to normal
-        Invoke(nameof(LightNormal), 0.2f);
+        //puts the light back to normal, after a really quick moment
+        Invoke(nameof(LightNormal), 0.1f);
     }
 
     private void OnDisable()
