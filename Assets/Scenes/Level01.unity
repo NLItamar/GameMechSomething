@@ -3274,7 +3274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 100310093}
   m_Layer: 0
-  m_Name: SQ6
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3292,7 +3292,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1, z: 0.10000001}
   m_Children: []
   m_Father: {fileID: 1150960540}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -270, y: 0, z: 0}
 --- !u!1 &101084569
 GameObject:
@@ -4126,7 +4126,7 @@ RectTransform:
   m_Children:
   - {fileID: 995428239}
   m_Father: {fileID: 666983003}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4519,7 +4519,7 @@ GameObject:
   m_Component:
   - component: {fileID: 142643923}
   m_Layer: 0
-  m_Name: SQ20
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4634,7 +4634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 147002693}
   m_Layer: 0
-  m_Name: SQ4
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4652,7 +4652,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1, z: 0.10000001}
   m_Children: []
   m_Father: {fileID: 1150960540}
-  m_RootOrder: 3
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: -270, y: 0, z: 0}
 --- !u!1 &154646856
 GameObject:
@@ -4664,7 +4664,7 @@ GameObject:
   m_Component:
   - component: {fileID: 154646857}
   m_Layer: 0
-  m_Name: SQ8
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4682,7 +4682,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1, z: 0.10000001}
   m_Children: []
   m_Father: {fileID: 1150960540}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -270, y: 0, z: 0}
 --- !u!1001 &160087576
 PrefabInstance:
@@ -5859,7 +5859,7 @@ GameObject:
   m_Component:
   - component: {fileID: 220419597}
   m_Layer: 0
-  m_Name: SQ3
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5877,7 +5877,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1, z: 0.10000001}
   m_Children: []
   m_Father: {fileID: 1150960540}
-  m_RootOrder: 2
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: -270, y: 0, z: 0}
 --- !u!1 &228936861
 GameObject:
@@ -6329,7 +6329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 254281296}
   m_Layer: 0
-  m_Name: SQ23
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7274,7 +7274,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284119840}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 20, y: 10, z: 1}
@@ -9120,7 +9120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 358038991}
   m_Layer: 0
-  m_Name: SQ26
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10520,7 +10520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 448273457}
   m_Layer: 0
-  m_Name: SQ27
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11513,7 +11513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 533656275}
   m_Layer: 0
-  m_Name: SQ7
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11531,7 +11531,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1, z: 0.10000001}
   m_Children: []
   m_Father: {fileID: 1150960540}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -270, y: 0, z: 0}
 --- !u!1 &533966635
 GameObject:
@@ -11909,7 +11909,7 @@ GameObject:
   m_Component:
   - component: {fileID: 547705311}
   m_Layer: 0
-  m_Name: SQ28
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14291,6 +14291,7 @@ RectTransform:
   - {fileID: 1410305663}
   - {fileID: 1489105894}
   - {fileID: 374618415}
+  - {fileID: 1814675247}
   - {fileID: 126529085}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -15840,7 +15841,7 @@ GameObject:
   m_Component:
   - component: {fileID: 730210438}
   m_Layer: 0
-  m_Name: SQ14
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15870,7 +15871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 730498065}
   m_Layer: 0
-  m_Name: SQ21
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18388,7 +18389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 838838938}
   m_Layer: 0
-  m_Name: SQ18
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19191,7 +19192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 876842254}
   m_Layer: 0
-  m_Name: SQ11
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19209,7 +19210,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1, z: 0.10000001}
   m_Children: []
   m_Father: {fileID: 1150960540}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -270, y: 0, z: 0}
 --- !u!1 &876983890
 GameObject:
@@ -19221,7 +19222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 876983891}
   m_Layer: 0
-  m_Name: SQ12
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19239,7 +19240,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1, z: 0.10000001}
   m_Children: []
   m_Father: {fileID: 1150960540}
-  m_RootOrder: 11
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -270, y: 0, z: 0}
 --- !u!1001 &883348559
 PrefabInstance:
@@ -24412,7 +24413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1065303362}
   m_Layer: 0
-  m_Name: SQ16
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26735,19 +26736,19 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1971648088}
+  - {fileID: 876983891}
+  - {fileID: 1191021732}
   - {fileID: 1205943099}
+  - {fileID: 100310093}
+  - {fileID: 533656275}
+  - {fileID: 154646857}
+  - {fileID: 876842254}
   - {fileID: 1852372536}
   - {fileID: 220419597}
   - {fileID: 147002693}
   - {fileID: 1961027413}
-  - {fileID: 100310093}
-  - {fileID: 533656275}
-  - {fileID: 154646857}
-  - {fileID: 1971648088}
   - {fileID: 1605103814}
-  - {fileID: 876842254}
-  - {fileID: 876983891}
-  - {fileID: 1191021732}
   - {fileID: 730210438}
   - {fileID: 1254549932}
   - {fileID: 1065303362}
@@ -27730,7 +27731,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1191021732}
   m_Layer: 0
-  m_Name: SQ13
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27748,7 +27749,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1, z: 0.10000001}
   m_Children: []
   m_Father: {fileID: 1150960540}
-  m_RootOrder: 12
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -270, y: 0, z: 0}
 --- !u!1 &1191822563
 GameObject:
@@ -28400,7 +28401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1205943099}
   m_Layer: 0
-  m_Name: SQ1
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28418,7 +28419,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1, z: 0.10000001}
   m_Children: []
   m_Father: {fileID: 1150960540}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1206884745
 GameObject:
@@ -33912,7 +33913,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1254549932}
   m_Layer: 0
-  m_Name: SQ15
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34523,7 +34524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1263910883}
   m_Layer: 0
-  m_Name: SQ24
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35404,7 +35405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1295959614}
   m_Layer: 0
-  m_Name: SQ25
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38888,7 +38889,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1438320433}
   m_Layer: 0
-  m_Name: SQ19
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39217,7 +39218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1462232164}
   m_Layer: 0
-  m_Name: SQ30
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39474,7 +39475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1468263892}
   m_Layer: 0
-  m_Name: SQ22
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42462,7 +42463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1605103814}
   m_Layer: 0
-  m_Name: SQ10
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42480,7 +42481,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1, z: 0.10000001}
   m_Children: []
   m_Father: {fileID: 1150960540}
-  m_RootOrder: 9
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: -270, y: 0, z: 0}
 --- !u!1001 &1612590206
 PrefabInstance:
@@ -43004,7 +43005,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1663225306}
   m_Layer: 0
-  m_Name: SQ17
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46107,6 +46108,85 @@ Transform:
   m_Father: {fileID: 133285556}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1814675246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1814675247}
+  - component: {fileID: 1814675249}
+  - component: {fileID: 1814675248}
+  m_Layer: 5
+  m_Name: ESCgame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1814675247
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814675246}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 666983003}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 30.69873, y: -25.784302}
+  m_SizeDelta: {x: 200, y: 30}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &1814675248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814675246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.96575665, g: 1, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 25
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 200
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Press ESC to quit
+--- !u!222 &1814675249
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814675246}
+  m_CullTransparentMesh: 0
 --- !u!1 &1819112344
 GameObject:
   m_ObjectHideFlags: 0
@@ -46710,7 +46790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1832962487}
   m_Layer: 0
-  m_Name: SQ29
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47308,7 +47388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1852372536}
   m_Layer: 0
-  m_Name: SQ2
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47326,7 +47406,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1, z: 0.10000001}
   m_Children: []
   m_Father: {fileID: 1150960540}
-  m_RootOrder: 1
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1857232347
 GameObject:
@@ -49319,7 +49399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1961027413}
   m_Layer: 0
-  m_Name: SQ5
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49337,7 +49417,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1, z: 0.10000001}
   m_Children: []
   m_Father: {fileID: 1150960540}
-  m_RootOrder: 4
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: -270, y: 0, z: 0}
 --- !u!4 &1963991282 stripped
 Transform:
@@ -49634,7 +49714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1971648088}
   m_Layer: 0
-  m_Name: SQ9
+  m_Name: SQSpawnPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49652,7 +49732,7 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1, z: 0.10000001}
   m_Children: []
   m_Father: {fileID: 1150960540}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1972564100
 GameObject:

@@ -147,7 +147,7 @@ public class ActiveBehaviourScript : MonoBehaviour
                 //if the player is in sight and for the first time in sight it'll set the values true for following the player and a lil sauron ref
                 if(!enteredRaycast)
                 {
-                    creepManager.TurnCreepOff();
+                    creepManager.TurnCreepOff(gameObject.name);
                     //follow player code and creeping
                     Debug.Log("I SEEEEE YOUUUUU");
                     //does the red screen thingy
@@ -289,7 +289,7 @@ public class ActiveBehaviourScript : MonoBehaviour
     //hopefully clears the creeping when an enemy is close and disabled
     private void OnDisable()
     {
-        creepManager.TurnCreepOff();
+        creepManager.TurnCreepOff(gameObject.name);
     }
 
     private void OnEnable()

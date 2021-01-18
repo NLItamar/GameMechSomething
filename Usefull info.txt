@@ -1,2 +1,3 @@
 some goals to keep track of: https://docs.google.com/document/d/1X3Ro9sPDtW5yUYagyFAqYiPrxo1qgUkCmbr2wWaf3yQ/edit?usp=sharing 
-
+Game saves log files on desktop
+I took a lot of inspiration from Alien: Isolation (greatest horror game of all time)

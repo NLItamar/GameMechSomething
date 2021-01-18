@@ -9,18 +9,20 @@ public class EndLevelColliderScript : MonoBehaviour
     public GameObject gameManager;
 
     private JournalProgression journalProgression;
+    private EndLevelScript endLevelScript;
 
     private void Start()
     {
         journalProgression = gameManager.GetComponent<JournalProgression>();
+        endLevelScript = gameManager.GetComponent<EndLevelScript>();
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnTriggerEnter(Collider other)
     {
         //first check if you are eligable to end the game then check if you are at the location
-        if(gameManager.GetComponent<EndLevelScript>().endGame)
+        if (endLevelScript.endGame)
         {
-            if (hit.collider.name == "EndLevelCollider")
+            if (other.CompareTag("EndLevelCollider"))
             {
                 endText.gameObject.SetActive(true);
 

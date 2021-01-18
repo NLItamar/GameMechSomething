@@ -77,7 +77,7 @@ public class CreepDetection : MonoBehaviour
         //puts the ui image back to nothing, see through
         else if(dist > creepingDistanceMeasure && !shouldICheck)
         {
-            creepManager.TurnCreepOff();
+            creepManager.TurnCreepOff(gameObject.name);
 
             //gotta check again ehh
             shouldICheck = true;

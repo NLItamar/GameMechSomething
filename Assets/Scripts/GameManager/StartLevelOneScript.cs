@@ -29,7 +29,7 @@ public class StartLevelOneScript : MonoBehaviour
         //set active method for roof and start text
         SetObjectsActive();
 
-        //spawns the intels randomly
+        //spawns the intels randomly, only the mess object since that one spawns in one room and not dynamic over a lot of points
         randomNumber = Random.Range(0, 5);
         SpawnToRandomFromList(randomNumber, MessSpawnPoints, MessObject);
 
@@ -83,5 +83,7 @@ public class StartLevelOneScript : MonoBehaviour
         {
             toMoveObject.SetActive(true);
         }
+
+        Debug.Log("Spawned " + toMoveObject.name + " at: " + toMoveObject.transform.position + ", go figure where that is");
     }
 }

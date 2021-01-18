@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using UnityEngine.SceneManagement;
+
+
 
 public class JournalScript : MonoBehaviour
 {
@@ -34,6 +37,12 @@ public class JournalScript : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.Q) && journalOpen)
         {
             CloseJournal();
+        }
+        //temp place for escape to main menu
+        else if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("Going to main menu now!");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 

@@ -105,6 +105,7 @@ public class JournalProgression : MonoBehaviour
                 //sets the next object active
                 //random spawn points done in startLevelScript
                 MessObject.SetActive(true);
+                Debug.Log("Mess object is in the mess hall IN THA MESS HALL");
                 break;
 
             case "MessObject":

@@ -26,8 +26,9 @@ public class LightBehaviourStaticScript : MonoBehaviour
     private LightActivationScript lightActivationScript;
 
     private bool givenWarning;
+    private bool isJumpyLight;
 
-    void Start()
+    private void Awake()
     {
         myLight = GetComponent<Light>();
         randomTime = Random.Range(1f, maxCheck);
@@ -37,7 +38,10 @@ public class LightBehaviourStaticScript : MonoBehaviour
         setIntensity = maxIntensity;
 
         m_Material = GetComponent<Renderer>().material;
+    }
 
+    void Start()
+    {
         //should this light be turned on? also a checker further on in the code
         isOn = true;
 
@@ -45,14 +49,14 @@ public class LightBehaviourStaticScript : MonoBehaviour
         isAlwaysOn = lightActivationScript.isAlwaysOn;
 
         //values from the parent depending on what light it is through a tag
-        if(this.gameObject.tag == "LightOne")
+        if(gameObject.CompareTag("LightOne"))
         {
             minIntensity = lightActivationScript.minIntensityOne;
             maxIntensity = lightActivationScript.maxIntensityOne;
             normalIntensity = lightActivationScript.normalIntensityOne;
             maxCheck = lightActivationScript.maxCheckOne;
         }
-        else if(this.gameObject.tag == "LightTwo")
+        else if(gameObject.CompareTag("LightTwo"))
         {
             minIntensity = lightActivationScript.minIntensityTwo;
             maxIntensity = lightActivationScript.maxIntensityTwo;
@@ -61,6 +65,8 @@ public class LightBehaviourStaticScript : MonoBehaviour
         }
         firstEncounterIntensity = lightActivationScript.jumpyLightIntensity;
         firstEncounter = lightActivationScript.firstEncounter;
+
+        isJumpyLight = lightActivationScript.isJumpyLight;
 
         givenWarning = false;
     }
@@ -145,18 +151,22 @@ public class LightBehaviourStaticScript : MonoBehaviour
         m_Material.DisableKeyword("_EMISSION");
     }
 
+    //cheesy way of doing this
     private void OnEnable()
     {
-        Debug.Log("light in " + this.transform.parent.parent.parent.name + " just went heckin nuts!!");
-        myLight.intensity = firstEncounterIntensity;
-        firstEncounter = true;
+        if(!firstEncounter && isJumpyLight)
+        {
+            Debug.Log("light in " + this.transform.parent.parent.parent.name + " just went heckin nuts!!");
+            myLight.intensity = firstEncounterIntensity;
+            firstEncounter = true;
 
-        //turns the emission on the material BACK ON
-        m_Material.EnableKeyword("_EMISSION");
-        m_Material.SetColor("_EmmisionColor", Color.white * 1f);
+            //turns the emission on the material BACK ON
+            m_Material.EnableKeyword("_EMISSION");
+            m_Material.SetColor("_EmmisionColor", Color.white * 1f);
 
-        //puts the light back to normal, after a really quick moment
-        Invoke(nameof(LightNormal), 0.1f);
+            //puts the light back to normal, after a really quick moment
+            Invoke(nameof(LightNormal), 0.1f);
+        }
     }
 
     private void OnDisable()

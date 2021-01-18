@@ -17,13 +17,17 @@ public class CreepManager : MonoBehaviour
 
     private float lerpMultiplier;
 
+    private void Awake()
+    {
+        journalProgression = this.GetComponent<JournalProgression>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+        CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         creepOn = false;
-        journalProgression = this.GetComponent<JournalProgression>();
-        Player = GameObject.FindGameObjectWithTag("Player");
-        CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
     }
 
     public void Creeping(Transform enemy, float distanceMeasure, bool isEnemyOnline, float lerpModify)
@@ -58,8 +62,10 @@ public class CreepManager : MonoBehaviour
         journalProgression.JournalAddText("FirstEnemyEncounter");
     }
 
-    public void TurnCreepOff()
+    public void TurnCreepOff(string thisObject)
     {
+        Debug.Log("TurnCreepOff is called by: " + thisObject);
+
         if(CreepMeter != null && creepOn)
         {
             creepOn = false;
@@ -69,9 +75,9 @@ public class CreepManager : MonoBehaviour
 
         if(CreepMeter == null)
         {
-            //something about closing the game whilst in editor
+            //something about closing the game whilst in editor or switching scenes
             Debug.LogWarning("creepMeter image is NULL, can ignore for now");
-            CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
+            //CreepMeter = GameObject.FindGameObjectWithTag("CreepDetection").GetComponent<Image>();
         }
 
         else
