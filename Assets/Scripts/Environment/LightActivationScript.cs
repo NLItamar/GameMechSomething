@@ -22,6 +22,9 @@ public class LightActivationScript : MonoBehaviour
     public float normalIntensityTwo;
     public int maxCheckTwo;
 
+    //bubble distance
+    public float bubbleDistance;
+
     //intensity when the player approaches first
     public float jumpyLightIntensity;
     [HideInInspector] public bool firstEncounter;
@@ -40,6 +43,8 @@ public class LightActivationScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        BubbleChecker();
+
         if(isJumpyLight)
         {
             CheckJumpyLightDistance();
@@ -58,6 +63,20 @@ public class LightActivationScript : MonoBehaviour
         {
             lights.SetActive(false);
             firstEncounter = false;
+        }
+    }
+
+    private void BubbleChecker()
+    {
+        //bubble distance to turn off every light source, to save performance
+        if(Vector3.Distance(this.transform.position, player.transform.position) >= bubbleDistance && lights.activeInHierarchy == true)
+        {
+            lights.SetActive(false);
+        }
+        //turn it on if its in the bubble
+        else if(Vector3.Distance(this.transform.position, player.transform.position) < bubbleDistance && lights.activeInHierarchy == false)
+        {
+            lights.SetActive(true);
         }
     }
 }

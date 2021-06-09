@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
 
-
+//also houses escape button
 
 public class JournalScript : MonoBehaviour
 {
@@ -39,7 +39,7 @@ public class JournalScript : MonoBehaviour
             CloseJournal();
         }
         //temp place for escape to main menu
-        else if(Input.GetKeyDown(KeyCode.Escape))
+        else if(Input.GetKeyDown(KeyCode.Backspace))
         {
             Debug.Log("Going to main menu now!");
             SceneManager.LoadScene("MainMenu");
