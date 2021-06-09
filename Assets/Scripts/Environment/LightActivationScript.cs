@@ -24,6 +24,7 @@ public class LightActivationScript : MonoBehaviour
 
     //bubble distance
     public float bubbleDistance;
+    public bool activatedNow;
 
     //intensity when the player approaches first
     public float jumpyLightIntensity;
@@ -69,14 +70,18 @@ public class LightActivationScript : MonoBehaviour
     private void BubbleChecker()
     {
         //bubble distance to turn off every light source, to save performance
-        if(Vector3.Distance(this.transform.position, player.transform.position) >= bubbleDistance && lights.activeInHierarchy == true)
+        if(Vector3.Distance(this.transform.position, player.transform.position) >= bubbleDistance && activatedNow)
         {
             lights.SetActive(false);
+            activatedNow = false;
+            Debug.Log("Light in: " + this.transform.parent.parent.name + " is out of the bubble!!");
         }
         //turn it on if its in the bubble
-        else if(Vector3.Distance(this.transform.position, player.transform.position) < bubbleDistance && lights.activeInHierarchy == false)
+        else if(Vector3.Distance(this.transform.position, player.transform.position) < bubbleDistance && !activatedNow)
         {
             lights.SetActive(true);
+            activatedNow = true;
+            Debug.Log("Light in: " + this.transform.parent.parent.name + " just entered the bubble!!");
         }
     }
 }

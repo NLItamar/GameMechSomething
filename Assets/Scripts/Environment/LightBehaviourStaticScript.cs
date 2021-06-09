@@ -154,7 +154,7 @@ public class LightBehaviourStaticScript : MonoBehaviour
     //cheesy way of doing this
     private void OnEnable()
     {
-        if(!firstEncounter && isJumpyLight)
+        if(!firstEncounter && isJumpyLight && lightActivationScript.activatedNow)
         {
             Debug.Log("light in " + this.transform.parent.parent.parent.name + " just went heckin nuts!!");
             myLight.intensity = firstEncounterIntensity;
